@@ -1,0 +1,284 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <title>Olive M Pay</title>
+      <meta name="description" content="" />
+      <meta name="keywords" content="" />
+      <meta name="author" content="Sherin"/>
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="favicon.ico">
+      <link rel="icon" href="favicon.ico" type="image/x-icon">
+      <!-- Custom CSS -->
+      <link href="{% static "dist/css/style.css" %}" rel="stylesheet" type="text/css">
+      <style>
+         .navbar.navbar-inverse {
+         background: #000000d9;
+         }
+         .navbar {
+         border-radius: 0px;
+         }
+         .page-wrapper {
+         margin-left: 19px;
+         padding: 30px 20px;
+         position: relative;
+         -webkit-transition: all 0.4s ease;
+         -moz-transition: all 0.4s ease;
+         transition: all 0.4s ease;
+         left: 0;
+         }
+         @media only screen and (max-width: 767px) {
+         .page-wrapper {
+         margin-left: 19px;
+         padding: 0px 0px;
+         position: relative;
+         -webkit-transition: all 0.4s ease;
+         -moz-transition: all 0.4s ease;
+         transition: all 0.4s ease;
+         left: 0;
+         }
+         }
+      </style>
+   </head>
+   <body>
+      <!-- Preloader -->
+      <div class="preloader-it">
+         <div class="la-anim-1"></div>
+      </div>
+      <!-- /Preloader -->
+      <div class="wrapper theme-6-active pimary-color-yellow">
+        <nav class="navbar navbar-inverse">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#">Voip Cloud Test</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li><a href="{% url "adminDcardDashboard" %}">Home</a></li>
+                <li><a href="{% url "profiledcard" %}">Edit Profile</a></li>
+                 <li class="">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">User Management
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li><a href="{% url "addResellerDcard" %}">Add Reseller</a></li>
+                       <li><a href="{% url "addUserDcard" %}">Add User</a></li>
+                       <li><a href="{% url "viewResellerDcard" %}">View Reseller</a></li>
+                       <li><a href="{% url "viewUserDcard" %}">View User</a></li>
+                    </ul>
+                 </li>
+                 <li class="">
+                    <a id="bm" class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Balance Management	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                         <a href="{% url "balanceTransferDcard" %}">Balance transfer</a>
+                       </li>
+                       <li>
+                         <a href="{% url "addPaymentDcard" %}">Add Payment</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="re" class="dropdown-toggle" data-toggle="dropdown" href="#">Reports  <span class="caret"></span> </a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "datacardreport" %}">Vcloud Report</a>
+                       </li>
+                       <li>
+                            <a href="{% url "bTReportDcard" %}">Balance Transfer Report</a>
+                       </li>
+                       <li>
+                          <a href="{% url "paymentReportDcard" %}">Payment Report</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="br" class="dropdown-toggle" data-toggle="dropdown" href="#">Brands
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li><a href="{% url "addDCardbrand" %}">Add Brand</a></li>
+                       <li><a href="{% url "assignDCardBrands" %}">Assign Brand</a></li>
+                       <li><a href="{% url "manageDCardBrands" %}">Manage Brand</a></li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="pr" class="dropdown-toggle" data-toggle="dropdown" href="#">Products	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "adddcardProduct" %}">Add Product Manually</a>
+                       </li>
+                       <li>
+                          <a href="{% url "adddcardcsvProduct" %}">Assign Product as CSV file</a>
+                       </li>
+                       <li>
+                          <a href="{% url "dcardmanageProduct" %}">Manage Products</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li><a id="st" href="{% url "dcardstore" %}">Store</span></a>
+                 </li>
+
+
+
+		 <li>
+                     <a id="ma" class="dropdown-toggle" data-toggle="dropdown" href="#">Ads Management<span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li>
+                           <a href="{% url "dcardaddads" %}">Add Ads</a>
+                        </li>
+                        <li>
+                           <a  href="{% url "dcardviewad" %}">Manage Ads</a>
+                        </li>
+                     </ul>
+                 </li>
+                 <li><a id="cp" href="{% url "dcardchangepassword" %}">Change password</a></li>
+
+
+
+
+<li><a id="succ" class="dropdown-toggle" data-toggle="dropdown"  href="#">More</a>
+
+<ul class="dropdown-menu">
+                        <li><a id="cpli" href="{% url "dcardchangepassword" %}">Change password</a></li>
+
+                       <li>
+                     <a id="mali" class="dropdown-toggle" data-toggle="dropdown" href="#">Ads Management<span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li>
+                           <a href="{% url "dcardaddads" %}">Add Ads</a>
+                        </li>
+                        <li>
+                           <a  href="{% url "dcardviewad" %}">Manage Ads</a>
+                        </li>
+                     </ul>
+                 </li>
+
+
+<li class="dropdown-submenu">
+<a id="prli"  class="test" tabindex="-1" href="#">Products<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "adddcardProduct" %}">Add Product Manually</li>
+<li><a tabindex="-1" href="{% url "adddcardProduct" %}">Add Product Manually</a></li>
+<li><a tabindex="-1" href="{% url "adddcardcsvProduct" %}">Assign Product as CSV file</a></li>
+ <li><a tabindex="-1" href="{% url "dcardmanageProduct" %}">Manage Products</a></li>
+</ul>
+</li>
+
+
+
+
+
+ <li><a id="stli" href="{% url "dcardstore" %}">Store</a>
+
+
+
+<li class="dropdown-submenu">
+<a id="brli"  class="test" tabindex="-1" href="#">Brands	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "addDCardbrand" %}">Add Brand</li>
+<li><a tabindex="-1" href="{% url "assignDCardBrands" %}">Assign Brand</a></li>
+<li><a tabindex="-1" href="{% url "manageDCardBrands" %}">Manage Brand</a></li>
+</ul>
+</li>
+
+
+ 
+
+<li class="dropdown-submenu">
+<a id="reli"  class="test" tabindex="-1" href="#">Reports 	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "datacardreport" %}">Vcloud Report</a></li>
+<li><a tabindex="-1" href="{% url "bTReportDcard" %}">Balance Transfer Report</a></li>
+<li><a tabindex="-1" href="{% url "paymentReportDcard" %}">Payment Report</a></li>
+</ul>
+</li>
+
+
+
+
+
+ <li class="dropdown-submenu">
+<a id="bmli"  class="test" tabindex="-1" href="#">Balance Management	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "balanceTransferDcard" %}">Balance transfer</a></li>
+<li><a tabindex="-1" href="{% url "addPaymentDcard" %}">Add Payment</a></li>
+<li class="dropdown-submenu">
+<a class="test" href="#">Another dropdown <span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a href="#">3rd level dropdown</a></li>
+<li><a href="#">3rd level dropdown</a></li>
+</ul>
+</li>
+</ul>
+</li>
+
+
+                     </ul>
+
+
+
+
+</li>
+
+
+
+
+              </ul>
+              <ul class="nav navbar-nav navbar-right"><li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.name }}	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "logout" %}">Logout</a>
+                       </li>
+                    </ul>
+                 </li>
+              </ul>
+            </div>
+         </div>
+      </nav>
+
+         <!-- Main Content -->
+         <div class="page-wrapper">
+            <div class="container-fluid pt-25">
+               <section>
+                  <div class="col-lg-12 main">
+                     <div class="container-fluid">
+                        <div class="col-lg-5 col-sm-5  col-xs-12 ior">
+                           <center>International Online Recharge (IOR)</center>
+                        </div>
+                        <div class="col-lg-5 col-sm-5 col-xs-12 vcloud">
+                           <center><a href="{% url "vcloudDashboard" %}">V Cloud<a></center>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+            </div>
+            <!-- Footer -->
+            <footer class="footer container-fluid pl-30 pr-30">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <p>Developed and maintained by Nuvac technologies © 2018</p>
+                  </div>
+               </div>
+            </footer>
+            <!-- /Footer -->
+         </div>
+         <!-- /Main Content -->
+      </div>
+      <!-- /#wrapper -->
+      <!-- jQuery -->
+      <script src="{% static "vendors/bower_components/jquery/dist/jquery.min.js" %}"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="{% static "vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+      <!-- Slimscroll JavaScript -->
+      <script src="{% static "dist/js/jquery.slimscroll.js" %}"></script>
+      <!-- Init JavaScript -->
+      <script src="{% static "dist/js/init.js" %}"></script>
+   </body>
+</html>

@@ -1,0 +1,393 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <title>
+         OliveMPay
+      </title>
+      <meta name="description" content="Jetson is a Dashboard & Admin Site Responsive Template by hencework." />
+      <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Jetson Admin, Jetsonadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
+      <meta name="author" content="hencework"/>
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="favicon.ico">
+      <link rel="icon" href="favicon.ico" type="image/x-icon">
+      <!-- Data table CSS -->
+      <link href="{% static "dist/css/style.css" %}" rel="stylesheet" type="text/css">
+      <script src="{% static "vendors/bower_components/jquery/dist/jquery.min.js" %}"></script>
+      <link href="{% static "dist/jquery.bootstrap-touchspin.css" %}" rel="stylesheet" type="text/css" media="all">
+      <link href="{% static "dist/sweetalert.css" %}" rel="stylesheet" type="text/css">
+      <script src="{% static "dist/sweetalert2.min.js" %}"></script>
+   </head>
+   <body>
+      <!-- Preloader -->
+      <div class="preloader-it">
+         <div class="la-anim-1"></div>
+      </div>
+      <!-- /Preloader -->
+      <!-- Top Menu Items -->
+      <nav class="navbar navbar-inverse">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#">OliveMPay</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+               <ul class="nav navbar-nav">
+                 <li><a href="{% url "resellerDcardDashboard" %}">Home</a></li>
+                 <li><a href="{% url "resellerprofiledcard" %}">Edit Profile</a></li>
+                  <li class="">
+                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">User Management
+                     <span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li><a href="{% url "reselleraddResellerDcard" %}">Add Reseller</a></li>
+                        <li><a href="{% url "reselleraddUserDcard" %}">Add User</a></li>
+                        <li><a href="{% url "resellerviewResellerDcard" %}">View Reseller</a></li>
+                        <li><a href="{% url "resellerviewUserDcard" %}">View User</a></li>
+                     </ul>
+                  </li>
+                  <li class="">
+                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Balance Management	<span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li>
+                          <a href="{% url "resellerbalanceTransferDcard" %}">Balance transfer</a>
+                        </li>
+                        <li>
+                          <a href="{% url "reselleraddPaymentDcard" %}">Add Payment</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reports  <span class="caret"></span> </a>
+                     <ul class="dropdown-menu">
+                        <li>
+                           <a href="{% url "resellerdatacardreport" %}">Vcloud Report</a>
+                        </li>
+                        <li>
+                             <a href="{% url "resellerbTReportDcard" %}">Balance Transfer Report</a>
+                        </li>
+                        <li>
+                           <a href="{% url "resellerpaymentReportDcard" %}">Payment Report</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li><a href="{% url "resellerassignDCardBrands" %}">Assign Brand </a></li>
+                  <li><a href="{% url "resellerdcardviewbrands" %}">View  Brand </a></li>
+                  <li><a href="{% url "resellerdcardstore" %}">Store </a></li>
+                  <li><a href="{% url "resellerdcardchangepassword" %}">Change password</a></li>
+               </ul>
+               <ul class="nav navbar-nav navbar-right">
+                 <li><a href="#">Balance: {{ user.balance }}</a></li>
+                 <li><a href="#">Credit : {{ user.targetAmt }}</a></li>
+                 <li>
+                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.name }}	<span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li>
+                           <a href="{% url "logout" %}">Logout</a>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      <!-- /Top Menu Items -->
+      <!-- Left Sidebar Menu -->
+      <!-- /Left Sidebar Menu -->
+      <!-- Right Sidebar Menu -->
+      <style>
+         .tab{
+         background:#;
+         height: 50px;
+         }
+      </style>
+      <div class="page-wrapper" style="margin-left: 0px;    padding: 0px 20px;">
+         <div class="col-lg-12 col-xs-offset-3 col-sm-offset-5 col-lg-offset-0">
+           <div class="col-lg-2 col-lg-offset-3 tab">
+              <a href="{% url "resellervcloudStore" %}" class="btn btn-success">
+              Vcloud</a>
+           </div>
+           <div class="col-lg-2 tab">
+              <a href="{% url "resellerdcardstore" %}" class="btn btn-warning">
+              Data Card</a>
+           </div>
+           <div class="col-lg-2 tab">
+              <a href="{% url "resellerrcardstore" %}" class="btn btn-success">
+              Recharge Cards</a>
+           </div>
+         </div>
+         <div class="col-lg-12"><br><br></div>
+         <style>
+            .brand-btn
+            {
+            width:15%;
+            }
+
+.card{width:100%;
+border:#eae5ea 1px solid;
+height:320px;
+float:left;
+}
+
+.card:hover{box-shadow: 7px 7px 19px -5px #888888;}
+            .card{border:#CCC 1px solid; }
+
+         </style>
+
+         <div class="col-lg-12" style="background:#fff; border:#CCC 1px solid;">
+            <br><br>
+            <div class="col-lg-11">
+               <center>
+                 {% for j in btnlist %}
+                  <tr>
+                    <a href="/reseller/dcard/store/filter/{{ j }}" class="btn {{ j }}" style="background-color: red;">{{ j }}</a>
+                  </tr>
+                  {% endfor %}
+               </center>
+               <br>
+               <br>
+            </div>
+         </div>
+         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="fri" style="padding: 0px;">
+           {% for dcardproduct in dcardproducts %}
+            <div class="col-lg-2 productdetails" style="width:250px; float:left;" >
+              <br>
+               <div class="card product__details" style="background: #fff; padding:2%; margin:1%;"  data-toggle="modal" data-target="#myModal">
+                  <img class="card-img-top product__logo" src="/media/{{ dcardproduct.brand__logo }}" width="100%" alt="Card image cap">
+                  <div class="card-body product__innerDiv">
+                    <p class="card-text product__brandid" style="display:none;">{{ dcardproduct.brand__id }}</p>
+                     <h5 class="card-title product__brandname">{{ dcardproduct.brand__brand}}</h5>
+                     <p class="card-text product__denomination">
+                       <span class="product__rate" style="color:red;font-weight: bold;font-family: verdana;">{{ dcardproduct.cost }}</span>
+                       <span class="product__currency" style="color:red;font-weight: bold;font-family: verdana;">{{ dcardproduct.brand__currency }}</span>
+                     </p>
+                     <p class="card-text product__description">{{ dcardproduct.brand__description }}
+                     </p>
+                     <p class="card-text product_count" style="display:none;">{{ dcardproduct.count }}</p>
+                  </div>
+               </div>
+            </div>
+            {% endfor %}
+          </div>
+         <div class="col-md-4">
+            <br>
+            <center>
+               <h4>Promotions</h4>
+               <br>
+            </center>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+               <!-- Indicators -->
+               <ol class="carousel-indicators">
+                 {% for i in ads %}
+                 {% if forloop.first %}
+                  <li data-target="#myCarousel" data-slide-to="{{ forloop.counter }}" class="active"></li>
+                  {% else %}
+                  <li data-target="#myCarousel" data-slide-to="{{ forloop.counter }}"></li>
+                {% endif %}
+                {% endfor %}
+               </ol>
+               <!-- Wrapper for slides -->
+               <div class="carousel-inner">
+                 {% for i in ads %}
+                 {% if forloop.first %}
+                 <div class="item active">
+                   <img src="{{ i.adimage.url}}" alt="Los Angeles">
+                 </div>
+                 {% else %}
+                 <div class="item">
+                   <img src="{{ i.adimage.url}}" alt="Los Angeles">
+                 </div>
+                 {% endif %}
+                 {% endfor %}
+               </div>
+               <!-- Left and right controls -->
+               <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+               <span class="glyphicon glyphicon-chevron-left"></span>
+               <span class="sr-only">Previous</span>
+               </a>
+               <a class="right carousel-control" href="#myCarousel" data-slide="next">
+               <span class="glyphicon glyphicon-chevron-right"></span>
+               <span class="sr-only">Next</span>
+               </a>
+            </div>
+         </div>
+      </div>
+      <div id="myModal" class="modal fade" role="dialog">
+         <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title" id="brandname"></h4>
+               </div>
+               <div class="modal-body">
+                  <div class="col-lg-6"><img id="pdlogo" src="" width="100%"></div>
+                  <div class="col-lg-6">
+                     <h3 class="m-t-none m-b"></h3>
+                     <h6 class="m-t-none m-b" id="ori_deno" style="display:none"></h6>
+                     <h3 class="m-t-none m-b" id="denomination">Rate: <span id="brandrate"></span>-<span id="brandcurrency"> </span></h3>
+                     <h5 class="m-t-none m-b" id="description"></h5>
+                     <div class="col-lg-10">
+                        <br>
+                        <br>
+                        <div class="input-group bootstrap-touchspin">
+                          <label for="ex_limit"></label>
+                          <input id="ex_limit" type="text" value="0" name="ex_limit">
+                        </div>
+                        <br>
+                        <button class="btn pull-right btn-success btn-alert" style="top: 5px">Buy</button>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                    <h4 class="totalcost"></h4>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script>
+      $(document).ready(function(){
+        var maxLL=10;
+        $(".productdetails").click(function(){
+          var pd = $(this).children(".product__details");
+          var brand__logo = pd.children(".product__logo").attr('src');
+          var pid = pd.children(".product__innerDiv");
+          var brandid = pid.children(".product__brandid").html();
+          var brandname = pid.children(".product__brandname").html();
+          var deno = pid.children(".product__denomination");
+          var currency = deno.children(".product__currency").html();
+          var rate = deno.children(".product__rate").html();
+          var desc = pid.children(".product__description").html();
+          var count = pid.children(".product_count").html();
+          console.log(rate)
+          console.log(count);
+          maxLL = count;
+          $("#ex_limit").val(0);
+          $("#ex_limit").trigger("touchspin.updatesettings", {max: maxLL});
+          document.getElementById("pdlogo").src=brand__logo;
+          document.getElementById("brandname").innerHTML=brandname;
+          document.getElementById("brandrate").innerHTML=rate;
+          document.getElementById("brandcurrency").innerHTML=currency;
+          $('.totalcost').text("Cost:" + rate + " ");
+        });
+        $("#ex_limit").TouchSpin({
+          min: 1,
+          max: maxLL,
+          mousewheel: true,
+          stepinterval: 50,
+          maxboostedstep: 10000000
+        });
+        $('#ex_limit').change(function (e) {
+          debugger;
+          var rate = document.getElementById("brandrate").innerHTML;
+          var d = $('#ex_limit').val();
+          var sum = parseFloat(rate) * parseFloat(d);
+          var c = $('#denomination').text();
+          $('.totalcost').text("Cost:" + sum + " ");
+        });
+        $(".btn-alert").click(function(){
+
+          $('#myModal').modal('hide');
+          var amt = $('.totalcost').text();
+          swal({
+            title: 'Order confirmation',
+            text: 'The total Transaction Amount is '+amt+'!',
+            type: 'warning',
+            buttons: {
+              cancel: "Cancel",
+              Ok: {
+                text: "Ok",
+                value: true,
+              }
+            }
+          }).then((value) => {
+            if (value)
+            {
+              var quantity = $('#ex_limit').val();
+              var amt = document.getElementById("brandrate").innerHTML;
+              var brandid = document.getElementById("brandname").innerHTML;
+              //alert(amt);
+              complete(brandid,amt,quantity)
+            }
+          });
+        });
+      });
+      function complete(brandid,amt, quantity){
+          //alert(brandid+" "+quantity+" "+amt);
+          $.ajax({
+            url: '/ajax/buy_datacard_brands/',
+            method: 'POST',
+            data:  { "csrfmiddlewaretoken": '{{csrf_token}}',"brandid": brandid, "quantity": quantity, "amt": amt},
+            dataType: 'json',
+            success: function (data) {
+              console.log(data)
+              if(data.res_status=="success")
+              {
+                swal({
+                  icon: "success",
+                  title: "Success",
+                  text: "The transaction is completed!",
+                  type: "Success",
+                  buttons: {
+                    cancel: "OK",
+                    print: {
+                      text: "Print",
+                      value: "print",
+                    },
+                    down: {
+                      text: "Download",
+                      value: "down",
+                    }
+                  }
+                }).then((value) => {
+                  switch (value) {
+                    case "print":
+                      var i;
+                      console.log(data.data[0]);
+                      var tesst = window.open("{% url "printlayout" %}", "myWindow", "width=218,height=400");
+                      $.each(data.data,function(key,value){
+                        tesst.document.write('<div><img src="'+value.brand_logo+'" width="120" height="120" style="display:block; margin-left:auto; margin-right:auto;"/></div>')
+                        tesst.document.write('<h3 style="text-align:center">www.olivempay.com</h3>');
+                        tesst.document.write('<h3 style="text-align:center">*******************</h3>');
+                        tesst.document.write('<h3 style="text-align:center">BRAND NAME: ' + value.brand + '</h3>');
+                        tesst.document.write('<h3 style="text-align:center">UN: ' + value.carduname + '</h3>');
+                        tesst.document.write('<h3 style="text-align:center">USSD: *000*PIN#</h3>');
+                        tesst.document.write('<h3 style="text-align:center">*******************</h3>');
+                        tesst.document.write('<h3 style="text-align:center">' + value.sdate + '</h3>');
+                        tesst.document.write('<h3 style="text-align:center">Powered by Olive Mpay</h3>');
+                        tesst.document.write('<h3 style="text-align:center">_____________________</h3>');
+                        tesst.document.write('<h3 style="text-align:center">                     </h3>');
+                      });
+                      tesst.document.write('<script>window.print();</scr'+'ipt>');
+                      tesst.document.write('<script>self.close();</scr'+'ipt>');
+                      window.location.href = "{% url "resellerdcardstore" %}";
+                      break;
+                    case "down":
+                      debugger;
+                      $.each(data.data,function(key,value){
+                        window.location.href = "/dcard/downloadproduct/"+data.trid;
+                      });
+                      break;
+                    default:
+                    }
+                  });
+              }
+              else {
+                swal("Error!", "Insufficient Balance. !", "warning");
+              }
+            }
+          });
+        }
+
+      </script>
+      <script src="{% static "dist/jquery.bootstrap-touchspin.js" %}"></script>
+      <script src="{% static "vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+      <script src="{% static "dist/js/jquery.slimscroll.js" %}"></script><!-- Data table JavaScript -->
+      <script src="{% static "dist/js/init.js" %}"></script>
+   </body>
+</html>

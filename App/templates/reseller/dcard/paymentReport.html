@@ -1,0 +1,339 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <title>OliveMPay</title>
+      <meta name="description" content="" />
+      <meta name="keywords" content="sherin shaju ,sherin shaju athickal" />
+      <meta name="Sherin Shaju" content="Sherin"/>
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="favicon.ico">
+      <link rel="icon" href="favicon.ico" type="image/x-icon">
+      <!-- Data table CSS -->
+      <link href="{% static "vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" %}" rel="stylesheet" type="text/css"/>
+      <!-- Custom CSS -->
+      <link href="{% static "dist/css/style.css" %}" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="{% static "select css/bootstrap-select.css" %}">
+      <!-- jQuery -->
+      <script src="{% static "vendors/bower_components/jquery/dist/jquery.min.js" %}"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+      <style>
+         .navbar.navbar-inverse {
+         background: #000000d9;
+         }
+         .navbar {
+         border-radius: 0px;
+         }
+         .page-wrapper {
+         margin-left: 19px;
+         padding: 30px 20px;
+         position: relative;
+         -webkit-transition: all 0.4s ease;
+         -moz-transition: all 0.4s ease;
+         transition: all 0.4s ease;
+         left: 0;
+         }
+         @media only screen and (max-width: 767px) {
+         .page-wrapper {
+         margin-left: 19px;
+         padding: 0px 0px;
+         position: relative;
+         -webkit-transition: all 0.4s ease;
+         -moz-transition: all 0.4s ease;
+         transition: all 0.4s ease;
+         left: 0;
+         }
+         }
+      </style>
+   </head>
+   <body>
+      <!-- Preloader -->
+      <div class="preloader-it">
+         <div class="la-anim-1"></div>
+      </div>
+      <!-- /Preloader -->
+      <div class="wrapper theme-6-active pimary-color-yellow">
+         <!-- Top Menu Items -->
+         <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+               <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#">OliveMPay</a>
+               </div>
+               <div class="collapse navbar-collapse" id="myNavbar">
+                  <ul class="nav navbar-nav">
+                    <li><a href="{% url "resellerDcardDashboard" %}">Home</a></li>
+                    <li><a href="{% url "resellerprofiledcard" %}">Edit Profile</a></li>
+                     <li class="">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">User Management
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                           <li><a href="{% url "reselleraddResellerDcard" %}">Add Reseller</a></li>
+                           <li><a href="{% url "reselleraddUserDcard" %}">Add User</a></li>
+                           <li><a href="{% url "resellerviewResellerDcard" %}">View Reseller</a></li>
+                           <li><a href="{% url "resellerviewUserDcard" %}">View User</a></li>
+                        </ul>
+                     </li>
+                     <li class="">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Balance Management	<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                           <li>
+                             <a href="{% url "resellerbalanceTransferDcard" %}">Balance transfer</a>
+                           </li>
+                           <li>
+                             <a href="{% url "reselleraddPaymentDcard" %}">Add Payment</a>
+                           </li>
+                        </ul>
+                     </li>
+                     <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reports  <span class="caret"></span> </a>
+                        <ul class="dropdown-menu">
+                           <li>
+                              <a href="{% url "resellerdatacardreport" %}">Vcloud Report</a>
+                           </li>
+                           <li>
+                                <a href="{% url "resellerbTReportDcard" %}">Balance Transfer Report</a>
+                           </li>
+                           <li>
+                              <a href="{% url "resellerpaymentReportDcard" %}">Payment Report</a>
+                           </li>
+                        </ul>
+                     </li>
+                     <li><a href="{% url "resellerassignDCardBrands" %}">Assign Brand </a></li>
+                     <li><a href="{% url "resellerdcardviewbrands" %}">View  Brand </a></li>
+                     <li><a href="{% url "resellerdcardstore" %}">Store </a></li>
+                     <li><a href="{% url "resellerdcardchangepassword" %}">Change password</a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Balance: {{ user.balance }}</a></li>
+                    <li><a href="#">Credit : {{ user.targetAmt }}</a></li>
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.name }}	<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                           <li>
+                              <a href="{% url "logout" %}">Logout</a>
+                           </li>
+                        </ul>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+         <!-- Main Content -->
+         <div class="page-wrapper">
+            <div class="container-fluid pt-25">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="panel panel-default card-view">
+                        <div class="panel-heading">
+                           <div class="pull-left">
+                              <h6 class="panel-title txt-dark">Payment Report</h6>
+                           </div>
+                           <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-wrapper collapse in">
+                           <div class="panel-body">
+                              <div class="form-wrap">
+                                 <form action="{% url "filterresellerdcardpaymentreport" %}" method="POST">
+                                   {% csrf_token %}
+                                    <div class="row">
+                                       <div class="col-lg-3 col-sm-12">
+                                          <div class="form-group">
+                                             <span class="help-block"> From Date</span>
+                                             {{ form.fromdate }}
+                                          </div>
+                                       </div>
+                                       <div class="col-lg-2 col-sm-12">
+                                          <div class="form-group">
+                                             <span class="help-block"> To Date</span>
+                                             {{ form.todate }}
+                                          </div>
+                                       </div>
+                                       <div class="col-lg-2 col-sm-12">
+                                          <div class="form-group">
+                                             <span class="help-block">User Type</span>
+                                             <select class="form-control" id="id_usertype" name="usertype" data-placeholder="Choose a Category" tabindex="1">
+                                               <option value='All' selected>All</option>
+                                               <option value='Self'>Self</option>
+                                                <option value="Sub_Reseller" >Reseller</option>
+                                                <option value="User">User</option>
+                                             </select>
+                                          </div>
+                                       </div>
+                                       <div class="col-lg-3 col-sm-12">
+                                          <div class="form-group">
+                                             <span class="help-block">User</span>
+                                             <select id="user" name="username" class="form-control">
+                                               <option value='All' selected>All</option>
+                                               {% for user in reseller %}
+                                               <option value="{{ user.username }}">{{ user.name }}</option>
+                                               {% endfor %}
+                                             </select>
+                                          </div>
+                                       </div>
+                                       <div class="col-lg-2 col-sm-12">
+                                          <div class="form-group">
+                                             <input style="background-color:white; margin-top:29px;" type="submit" class="btn btn-default btn-lg filter" value="Filter">
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                     <div class="panel panel-default card-view pa-0">
+                        <div class="panel-wrapper collapse in">
+                           <div class="panel-body pa-0">
+                              <div class="sm-data-box bg-red">
+                                 <div class="container-fluid">
+                                    <div class="row">
+                                       <div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
+                                          <span class="txt-light block counter"><span id="balance2"></span> <span id="total_profit">{{ sum }}</span></span>
+                                          <span class="weight-500 uppercase-font txt-light block">TOTAL</span>
+                                       </div>
+                                       <div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
+                                          <i class="zmdi zmdi-file txt-light data-right-rep-icon"></i>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+		<div class="row">
+		    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="panel panel-default card-view pa-0">
+                        <center><p>{% if filter %} Showing Results  from <strong style="color:red;">{{ filter.ffdate}}</strong> to <strong style="color:red;">{{ filter.ttdate }}</strong> Transfered From/To <strong style="color:red;">{{ filter.fuser }}</strong> User{% endif %}</p></center>
+                        </div>
+                    </div>
+		</div>
+               </div>
+               <!-- /Row -->
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="panel panel-default card-view">
+                        <div class="panel-wrapper collapse in">
+                           <div class="panel-body">
+                              <div class="table-wrap">
+                                 <div class="table-responsive">
+                                   <table id="example" class="table table-hover display  pb-30" >
+                                      <thead>
+                                         <tr>
+                                            <th>DATE</th>
+                                            <th>DESTINATION</th>
+                                            <th>OPENING BALANCE</th>
+                                            <th>AMOUNT</th>
+                                            <th>BALANCE</th>
+                                            <th>REMARKS</th>
+                                         </tr>
+                                      </thead>
+                                      <tfoot>
+                                         <tr>
+                                            <th>DATE</th>
+                                            <th>DESTINATION</th>
+                                            <th>OPENING BALANCE</th>
+                                            <th>AMOUNT</th>
+                                            <th>BALANCE</th>
+                                            <th>REMARKS</th>
+                                         </tr>
+                                      </tfoot>
+                                      <tbody>
+                                        {% for p in phist %}
+                                         <tr>
+                                            <td>{{ p.date }}</td>
+                                            <td>{{ p.destination.name }}</td>
+                                            <th>{{ p.obalance }}</th>
+                                            <td>{{ p.amount }}</td>
+                                            <td>{{ p.balance }}</td>
+                                            <td>{{ p.remarks }}</td>
+                                         </tr>
+                                         {% endfor %}
+                                      </tbody>
+                                   </table>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Footer -->
+            <footer class="footer container-fluid pl-30 pr-30">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <p>Developed and maintained by Nuvac technologies © 2018</p>
+                  </div>
+               </div>
+            </footer>
+            <!-- /Footer -->
+         </div>
+         <!-- /Main Content -->
+      </div>
+      <!-- /#wrapper -->
+      <script>
+         $(document).ready(function() {
+
+           $('#example').DataTable({
+             dom: 'Bfrtip',
+             buttons: [
+                 'copy', 'excel', 'pdf', 'print', 'csv'
+             ],
+             ordering:false,
+           });
+           $('.datetime-input').datetimepicker({
+               format:'YYYY-MM-DD'
+           });
+           $("#id_usertype").change(function () {
+             var usertype = $(this).val();
+             var select=$("#user").empty();
+             $('#user').append("<option value='All'>All</option>");
+             $.ajax({
+               url: '/ajax/get_user_or_reseller/',
+               data: {
+                 'usertype': usertype
+               },
+               dataType: 'json',
+               success: function (data) {
+                 console.log(data);
+                 $.each(data,function(key,value){
+                   console.log(value.pk)
+                   $('#user').append("<option value='"+value.pk+"'>"+value.fields.name+"</option>");
+                 });
+               }
+             });
+           });
+         });
+      </script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="{% static "vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+      <!-- Data table JavaScript -->
+      <script src="{% static "vendors/bower_components/datatables/media/js/jquery.dataTables.min.js" %}"></script>
+      <script src="{% static "data/dataTables.buttons.min.js" %}"></script>
+     <script src="{% static "data/buttons.dataTables.min.css" %}"></script>
+      <script src="{% static "data/buttons.flash.min.js" %}"></script>
+      <script src="{% static "data/jszip.min.js" %}"></script>
+      <script src="{% static "data/pdfmake.min.js" %}"></script>
+      <script src="{% static "data/vfs_fonts.js" %}"></script>
+      <script src="{% static "data/buttons.html5.min.js" %}"></script>
+      <script src="{% static "data/buttons.print.min.js" %}"></script>
+      <!-- Slimscroll JavaScript -->
+      <script src="{% static "dist/js/jquery.slimscroll.js" %}"></script>
+      <!-- Init JavaScript -->
+      <script src="{% static "dist/js/init.js" %}"></script>
+   </body>
+</html>

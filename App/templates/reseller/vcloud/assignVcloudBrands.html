@@ -1,0 +1,433 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <title>
+         OliveMPay
+      </title>
+      <meta name="description" content="" />
+      <meta name="keywords" content="" />
+      <meta name="author" content=""/>
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="favicon.ico">
+      <link rel="icon" href="favicon.ico" type="image/x-icon">
+      <!-- Data table CSS -->
+      <link href="{% static "vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" %}" rel="stylesheet" type="text/css"/>
+      <!-- Custom CSS -->
+      <link href="{% static "dist/css/style.css" %}" rel="stylesheet" type="text/css">
+      <script src="{% static "vendors/bower_components/jquery/dist/jquery.min.js" %}"></script>
+      <link href="{% static "dist/sweetalert.css" %}" rel="stylesheet" type="text/css">
+      <script src="{% static "dist/sweetalert.min.js" %}"></script>
+   </head>
+   <body>
+      <!-- Preloader -->
+      <div class="preloader-it">
+         <div class="la-anim-1">
+         </div>
+      </div>
+      <!-- /Preloader -->
+      <!-- Top Menu Items -->
+      <nav class="navbar navbar-inverse">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#">OliveMPay</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li><a href="{% url "resellervcloudhomePage" %}">Home</a></li>
+                <li><a href="{% url "resellervcloudprofile" %}">Edit Profile</a></li>
+                 <li class="">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">User Management
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li><a href="{% url "reselleraddReseller" %}">Add Reseller</a></li>
+                       <li><a href="{% url "reselleraddUser" %}">Add User</a></li>
+                       <li><a href="{% url "resellerviewReseller" %}">View Reseller</a></li>
+                       <li><a href="{% url "resellerviewUser" %}">View User</a></li>
+                    </ul>
+                 </li>
+                 <li class="">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Balance Management	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                         <a href="{% url "resellerbalanceTransfer" %}">Balance transfer</a>
+                       </li>
+                       <li>
+                         <a href="{% url "reselleraddPayment" %}">Add Payment</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reports  <span class="caret"></span> </a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "resellervcloudreport" %}">Vcloud Report</a>
+                       </li>
+                       <li>
+                            <a href="{% url "resellerbTReport" %}">Balance Transfer Report</a>
+                       </li>
+                       <li>
+                          <a href="{% url "resellerpaymentReport" %}">Payment Report</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li><a href="{% url "resellerassignVcloudBrands" %}">Assign Brand </a>
+                 <li><a href="{% url "resellerviewbrands" %}">View  Brand </a>
+                 <li><a href="{% url "resellervcloudStore" %}">Store </a>
+                 </li>
+                 <li><a href="{% url "resellervcloudchangepassword" %}">Change password</a></li>
+
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Balance: {{ user.balance }}</a></li>
+                <li><a href="#">Credit : {{ user.targetAmt }}</a></li>
+                <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.name }}	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "logout" %}">Logout</a>
+                       </li>
+                    </ul>
+                 </li>
+              </ul>
+            </div>
+         </div>
+      </nav>
+      <!-- /Top Menu Items -->
+      <!-- Left Sidebar Menu -->
+      <!-- /Left Sidebar Menu -->
+      <!-- Right Sidebar Menu -->
+      <style>
+         .tab{
+         background:#;
+         height: 50px;
+         }
+      </style>
+      <div class="page-wrapper" style="padding:0px 20px;">
+         <br>
+         <div class="col-lg-12">
+            <center>
+               <h3>VCLOUD</h3>
+               <h5>Assign brands to resellers</h5>
+               <br>
+            </center>
+         </div>
+         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="ibox-content">
+               <form role="form" class="form-inline">
+                  <div class="form-group">
+                     <label>User type:</label>
+                     <select id="usertype" name="userType" class="form-control">
+                        <option value="Sub_Reseller" selected>Reseller</option>
+                        <option value="User">User</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                     <label>Select user:</label>
+                     <select id="resellers" class="select2_demo_1 form-control rese select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                       {% for reseller in resellers %}
+                        <option value="{{ reseller.username }}">{{ reseller.name }}</option>
+                        {% endfor %}
+                     </select>
+                     <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 123px;"><span class="selection">
+                     <span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-resellers-container">
+                     <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
+                     </span>
+                     </span>
+                     <span class="dropdown-wrapper" aria-hidden="true"></span>
+                     </span>
+                  </div>
+                  <!--<div class="form-group">
+                     <label>Brands:</label>
+                     <select id="brands" class="form-control brands">
+                        {% for brand in brands %}
+                        <option value="{{ brand.id }}">{{ brand.brand__brand }}</option>
+                        {% endfor %}
+                     </select>
+                  </div>
+                  <div class="form-group">
+                     <center>
+                        <a class="btn btn-info" id="filter">Filter</a>
+                     </center>
+                  </div>
+                  <div class="form-group" id="hide">
+                     <span ><br></span>
+                  </div> -->
+                  <div class="form-group">
+                     <center>
+                        <a class="btn  btn-success" id="arun">Assign overall margin</a>
+                     </center>
+                  </div>                 <a href="#" class="btn btn-success" id="select">Unselect all</a>
+                  <button class="btn btn-success pull-right" id="save">Save</button>
+               </form>
+            </div>
+         </div>
+         <script>
+
+         </script>
+         <style>
+            #hide{
+            display: none;
+            }
+            @media only screen and (max-width: 1455px) {
+            #hide{
+            display: block;
+            }
+            }
+
+.card{width:100%;
+border:#eae5ea 1px solid;
+height:400px;
+float:left;
+}
+
+
+            .card:hover{
+            background:#f00;
+            box-shadow: 5px 8px 33px -3px #888888;
+            }
+         </style>
+
+         <div class="col-lg-12" style="padding: 0px;">
+           {% for brand in products %}
+            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-5">
+               <br>
+               <div class="card" style="background: #fff; padding:2%; margin:1%;">
+                  <img class="card-img-top" src="{{ brand.brand__logo }}" width="100%" alt="Card image cap">
+                  <div class="card-body product-desc">
+                     <h5 class="card-title product-name">{{ brand.brand__brand }}</h5>
+                     <h5 class="card-title product-id" style="display:none;">{{ brand.brand__id }}</h5>
+                     <p class="card-text denoblock"><span class="denomination">{{ brand.cost }}</span><span class="currency">{{ brand.brand__currency }}</span></p>
+                     <p class="card-text marginblock">Margin  &emsp; <input type="number" class="margin" id="margin{{ brand.brand__id }}" name="margin">
+                     <div class="checkbox checkbox-success checkbox-circle pull-right checkblock">
+                        <input class="check" id="check{{ brand.brand__id }}" type="checkbox" checked="">
+                        <label for="check"></label>
+                     </div>
+                     </p>
+                     <p class="card-text category">{{ brand.brand__category }}</p>
+                  </div>
+               </div>
+            </div>
+            {% endfor %}
+         </div>
+
+      </div>
+      <script>
+      $(document).ready(function(){
+        var clicked = true;
+        var clicklabel = "Select All";
+	$(".margin").val(0);
+        getAllMarginDefault();
+        $("#select").on("click", function() {
+          $(".check").prop("checked", !clicked);
+          clicked = !clicked;
+          if(clicked)
+          {
+            $("#select").html("Unselect All");
+          }
+          else {
+            $("#select").html("Select All");
+          }
+        });
+	$("#resellers").change(function () {
+    $(".check").prop("checked",false);
+          var user = document.getElementById("resellers").value;
+          getmargin(user)
+        });
+        $("#usertype").change(function () {
+          var usertype = $(this).val();
+          var select=$("#resellers").empty();
+          $.ajax({
+            url: '/ajax/get_user_or_reseller/',
+            data: {
+              'usertype': usertype
+            },
+            dataType: 'json',
+            success: function (data) {
+              var j=true;
+              $(".check").prop("checked",false);
+              $(".margin").val(0);
+              $.each(data,function(key,value){
+                if(j)
+                {
+                  $('#resellers').append("<option value='"+value.pk+"' selected>"+value.fields.name+"</option>");
+                  getmargin(value.pk);
+                  j=false;
+                }
+                else
+                {
+                  $('#resellers').append("<option value='"+value.pk+"'>"+value.fields.name+"</option>");
+                }
+              });
+            }
+          });
+        });
+        $('#save').click(function (e) {
+          e.preventDefault();
+          debugger;
+          var dd = $(".product-desc");
+          var reseller = $('#resellers option:selected').val();
+          if(reseller == null)
+          {
+            swal("Warning!", "Something Happend Unexpectedly..!", "warning");
+          }
+          else{
+            var brands = "";
+            var margins = "";
+            var vals = "";
+            var states = "";
+            var count=0
+            $.each(dd, function (key, value) {
+              var p = $(this).children(".product-id").html();
+              var denodiv = $(this).children(".denoblock");
+              var deno = denodiv.children(".denomination").html();
+              var curr = denodiv.children(".currency").html();
+              var marginblock = $(this).children(".marginblock");
+              var margin = $("#margin"+p).val();
+              var checkblock = marginblock.children(".checkblock");
+              var check = checkblock.children(".check");
+              var chk = checkblock.children(".check").val();
+              check = $('#check'+p).is(':checked');
+              if (margin == "") {
+                margin = 0;
+              }
+              if (check) {
+                if(count==0)
+                {
+                  vals = vals + margin;
+                  brands = brands + p;
+                  states = states + "1";
+                  margins = margins + margin;
+                }
+                else {
+                  vals = vals + "," + margin;
+                  brands = brands + "," + p;
+                  states = states + "," + "1";
+                  margins = margins + "," + margin;
+                }
+              }
+              else {
+                if(count==0)
+                {
+                  vals = vals +  margin;
+                  brands = brands +  p;
+                  states = states + "0";
+                  margins = margins + "0";
+                }
+                else {
+                  vals = vals + "," + margin;
+                  brands = brands + "," + p;
+                  states = states + "," + "0";
+                  margins = margins  + "," + "0";
+                }
+              }
+              count=count+1;
+            });
+            saveassignment(reseller, states, brands, margins, vals);
+          }
+        });
+        $("#arun").click(function(){
+          swal({
+            title: "Amount!",
+            text: "Enter The Margin To Assign",
+            type: "input",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            inputPlaceholder: "Margin"
+          }, function (inputValue) {
+            if (inputValue === false) return false;
+            if (inputValue === "") {
+              swal.showInputError("You need to enter the amount!");
+              return false
+            }
+            $(".margin").val(inputValue);
+            swal({
+              title: "Done!",
+              text: inputValue+" Assigned for all Brand",
+              type: "success",
+              showCancelButton: false,
+              closeOnConfirm: true,
+              inputPlaceholder: "Margin"
+            }, function (inputValue) {
+            });
+          });
+        });
+      });
+      function saveassignment(reseller, states, brands, margins, vals) {
+        $.ajax({
+          url: '/ajax/assign_vcloud_brands/',
+          method: 'POST',
+          data:  { "csrfmiddlewaretoken": '{{csrf_token}}',"username": reseller, "states": states, "brands": brands, "margins": margins, "values": vals},
+          dataType: 'json',
+          success: function (data) {
+            if(data.status=="Success")
+            {
+              swal("Done!", "The Products Are Assigned Successfully!", "success");
+            }
+            else {
+              swal("Warning!", "Something Happend Unexpectedly..!", "warning");
+            }
+          }
+        });
+      }
+      function getmargin(username)
+      {
+        console.log(username)
+        $.ajax({
+          url: '/ajax/get_margin_details/',
+          method: 'POST',
+          data:  { "csrfmiddlewaretoken": '{{csrf_token}}', "username": username, "type":"Vcloud"},
+          dataType: 'json',
+          success: function (data) {
+            $(".margin").val(0);
+            $.each(data, function (key, value) {
+              var p = value["brandid"];
+              $("#margin"+p).val(value["margin"]);
+              $("#check"+p).prop("checked", true);
+            });
+          }
+        });
+      }
+      function getAllMarginDefault()
+      {
+        var select=$("#resellers").empty();
+          $.ajax({
+            url: '/ajax/get_user_or_reseller/',
+            data: {
+              'usertype': 'Sub_Reseller'
+            },
+            dataType: 'json',
+            success: function (data) {
+              var j=true;
+              $(".margin").val(0);
+              $.each(data,function(key,value){
+                if(j)
+                {
+                  $('#resellers').append("<option value='"+value.pk+"' selected>"+value.fields.name+"</option>");
+                  getmargin(value.pk);
+                  j=false;
+                }
+                else
+                {
+                  $('#resellers').append("<option value='"+value.pk+"'>"+value.fields.name+"</option>");
+                }
+              });
+            }
+          });
+      }
+      </script>
+      <script src="{% static "vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+      <!-- Data table JavaScript -->
+      <script src="{% static "vendors/bower_components/datatables/media/js/jquery.dataTables.min.js" %}"></script>
+      <!-- Fancy Dropdown JS -->
+      <script src="{% static "dist/js/jquery.slimscroll.js" %}"></script>
+      <script src="{% static "dist/js/init.js" %}"></script>
+   </body>
+</html>

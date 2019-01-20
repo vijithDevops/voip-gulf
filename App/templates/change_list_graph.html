@@ -1,0 +1,66 @@
+{% extends "admin/change_list.html" %}
+{% load staticfiles %}
+{% block extrahead %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+    <script>
+        var randomColorGenerator = function () {
+            return '#' + (Math.random().toString(16) + '0000000').slice(2, 8);
+        };
+        var options = {
+            responsive: true,
+            maintainAspectRatio: true,
+            legend: {
+                position: 'left'
+            },
+            title: {
+                display: true
+            },
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
+        };
+        window.onload = function () {
+            var ctx = document.getElementById("postId-chart");
+            {% regroup cl.queryset|dictsort:"postId" by get_postId_display as postId_list %}
+            var lineChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: [{% for postId in postId_list %}'{{ postId.grouper }}',{% endfor %}],
+                    datasets: [{
+                        data: [{% for postId in postId_list %}'{{ postId.list|length }}',{% endfor %}],
+                        backgroundColor: [{% for postId in postId_list %}randomColorGenerator(),{% endfor %}]
+                    }]
+                },
+                options: options
+            });
+        }
+    </script>
+{% endblock %}
+{% block content %}
+
+    <hr>
+
+    <style>
+    .chartt{ width:700px;
+    }
+    @media screen and (max-width: 630px){
+      .chartt{ width:500px;
+      }
+    }
+    @media screen and (max-width: 460px){
+      .chartt{ width:300px;
+      }
+    }
+    </style>
+
+    <div class="row">
+    </br>
+    <h1 style="color:#79a7d8">  <strong>Registered User Details</strong></h1>
+        <div class="col-sm-3 chartt" >
+            <canvas id="postId-chart" style="width: 100px !important;"></canvas>
+        </div>
+    </div>
+    {{ block.super }}
+{% endblock %}

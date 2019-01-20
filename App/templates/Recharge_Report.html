@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Olive M Pay</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="sherin shaju ,sherin shaju athickal" />
+	<meta name="Sherin Shaju" content="Sherin"/>
+	
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	
+	<!-- Data table CSS -->
+	<link href="vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+	
+	<!-- Custom CSS -->
+	<link href="dist/css/style.css" rel="stylesheet" type="text/css">
+	
+	 <link rel="stylesheet" href="select css/bootstrap-select.css">
+	 <style>
+	
+	
+	
+	.navbar.navbar-inverse {
+    background: #000000d9;
+}
+	
+.navbar {
+    border-radius: 0px;
+}	
+	
+		
+		
+		.page-wrapper {
+    margin-left: 19px;
+    padding: 30px 20px;
+    position: relative;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    left: 0;
+}
+		
+@media only screen and (max-width: 767px) {
+  
+	
+		
+		
+.page-wrapper {
+    margin-left: 19px;
+    padding: 0px 0px;
+    position: relative;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    left: 0;
+}		
+		
+	}
+	
+		
+		
+	</style>
+	 
+	 
+</head>
+
+<body>
+	<!-- Preloader -->
+	<div class="preloader-it">
+		<div class="la-anim-1"></div>
+	</div>
+	<!-- /Preloader -->
+    <div class="wrapper theme-6-active pimary-color-yellow">
+		<!-- Top Menu Items -->
+		
+	<nav class="navbar navbar-inverse">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#">Voip Cloud Test</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li><a href="{% url "adminDcardDashboard" %}">Home</a></li>
+                <li><a href="{% url "profiledcard" %}">Edit Profile</a></li>
+                 <li class="">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">User Management
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li><a href="{% url "addResellerDcard" %}">Add Reseller</a></li>
+                       <li><a href="{% url "addUserDcard" %}">Add User</a></li>
+                       <li><a href="{% url "viewResellerDcard" %}">View Reseller</a></li>
+                       <li><a href="{% url "viewUserDcard" %}">View User</a></li>
+                    </ul>
+                 </li>
+                 <li class="">
+                    <a id="bm" class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Balance Management	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                         <a href="{% url "balanceTransferDcard" %}">Balance transfer</a>
+                       </li>
+                       <li>
+                         <a href="{% url "addPaymentDcard" %}">Add Payment</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="re" class="dropdown-toggle" data-toggle="dropdown" href="#">Reports  <span class="caret"></span> </a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "datacardreport" %}">Vcloud Report</a>
+                       </li>
+                       <li>
+                            <a href="{% url "bTReportDcard" %}">Balance Transfer Report</a>
+                       </li>
+                       <li>
+                          <a href="{% url "paymentReportDcard" %}">Payment Report</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="br" class="dropdown-toggle" data-toggle="dropdown" href="#">Brands
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li><a href="{% url "addDCardbrand" %}">Add Brand</a></li>
+                       <li><a href="{% url "assignDCardBrands" %}">Assign Brand</a></li>
+                       <li><a href="{% url "manageDCardBrands" %}">Manage Brand</a></li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="pr" class="dropdown-toggle" data-toggle="dropdown" href="#">Products	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "adddcardProduct" %}">Add Product Manually</a>
+                       </li>
+                       <li>
+                          <a href="{% url "adddcardcsvProduct" %}">Assign Product as CSV file</a>
+                       </li>
+                       <li>
+                          <a href="{% url "dcardmanageProduct" %}">Manage Products</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li><a id="st" href="{% url "dcardstore" %}">Store</span></a>
+                 </li>
+
+
+
+		 <li>
+                     <a id="ma" class="dropdown-toggle" data-toggle="dropdown" href="#">Ads Management<span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li>
+                           <a href="{% url "dcardaddads" %}">Add Ads</a>
+                        </li>
+                        <li>
+                           <a  href="{% url "dcardviewad" %}">Manage Ads</a>
+                        </li>
+                     </ul>
+                 </li>
+                 <li><a id="cp" href="{% url "dcardchangepassword" %}">Change password</a></li>
+
+
+
+
+<li><a id="succ" class="dropdown-toggle" data-toggle="dropdown"  href="#">More</a>
+
+<ul class="dropdown-menu">
+                        <li><a id="cpli" href="{% url "dcardchangepassword" %}">Change password</a></li>
+
+                       <li>
+                     <a id="mali" class="dropdown-toggle" data-toggle="dropdown" href="#">Ads Management<span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li>
+                           <a href="{% url "dcardaddads" %}">Add Ads</a>
+                        </li>
+                        <li>
+                           <a  href="{% url "dcardviewad" %}">Manage Ads</a>
+                        </li>
+                     </ul>
+                 </li>
+
+
+<li class="dropdown-submenu">
+<a id="prli"  class="test" tabindex="-1" href="#">Products<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "adddcardProduct" %}">Add Product Manually</li>
+<li><a tabindex="-1" href="{% url "adddcardProduct" %}">Add Product Manually</a></li>
+<li><a tabindex="-1" href="{% url "adddcardcsvProduct" %}">Assign Product as CSV file</a></li>
+ <li><a tabindex="-1" href="{% url "dcardmanageProduct" %}">Manage Products</a></li>
+</ul>
+</li>
+
+
+
+
+
+ <li><a id="stli" href="{% url "dcardstore" %}">Store</a>
+
+
+
+<li class="dropdown-submenu">
+<a id="brli"  class="test" tabindex="-1" href="#">Brands	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "addDCardbrand" %}">Add Brand</li>
+<li><a tabindex="-1" href="{% url "assignDCardBrands" %}">Assign Brand</a></li>
+<li><a tabindex="-1" href="{% url "manageDCardBrands" %}">Manage Brand</a></li>
+</ul>
+</li>
+
+
+ 
+
+<li class="dropdown-submenu">
+<a id="reli"  class="test" tabindex="-1" href="#">Reports 	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "datacardreport" %}">Vcloud Report</a></li>
+<li><a tabindex="-1" href="{% url "bTReportDcard" %}">Balance Transfer Report</a></li>
+<li><a tabindex="-1" href="{% url "paymentReportDcard" %}">Payment Report</a></li>
+</ul>
+</li>
+
+
+
+
+
+ <li class="dropdown-submenu">
+<a id="bmli"  class="test" tabindex="-1" href="#">Balance Management	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "balanceTransferDcard" %}">Balance transfer</a></li>
+<li><a tabindex="-1" href="{% url "addPaymentDcard" %}">Add Payment</a></li>
+<li class="dropdown-submenu">
+<a class="test" href="#">Another dropdown <span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a href="#">3rd level dropdown</a></li>
+<li><a href="#">3rd level dropdown</a></li>
+</ul>
+</li>
+</ul>
+</li>
+
+
+                     </ul>
+
+
+
+
+</li>
+
+
+
+
+              </ul>
+              <ul class="nav navbar-nav navbar-right"><li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.name }}	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "logout" %}">Logout</a>
+                       </li>
+                    </ul>
+                 </li>
+              </ul>
+            </div>
+         </div>
+      </nav>
+
+		
+		
+		
+		
+		
+
+        <!-- Main Content -->
+		<div class="page-wrapper">
+            <div class="container-fluid pt-25">
+				
+			
+			
+			<div class="row">
+                    <div class="col-sm-12">
+							<div class="panel panel-default card-view">
+								<div class="panel-heading">
+									<div class="pull-left">
+										<h6 class="panel-title txt-dark">Recharge Report</h6>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="panel-wrapper collapse in">
+									<div class="panel-body">
+                                        <div class="form-wrap">
+											<form>
+												<div class="row">
+													<div class="col-lg-2 col-sm-12">
+														<div class="form-group">
+                                                             <span class="help-block"> From Date</span> 
+															<input type="date" id="from" class="form-control">
+														</div>
+													</div>
+													<div class="col-lg-2 col-sm-12">
+														<div class="form-group">
+                                                            <span class="help-block"> To Date</span>
+															<input type="date" id="to" class="form-control">
+														</div>
+													</div>
+													<div class="col-lg-2 col-sm-12">
+														<div class="form-group">
+                                                            <span class="help-block">Recharge Type</span>
+															<select id="usertype" class="form-control">
+															<option value="All" selected="">All</option>
+															<option value="self">Recharge-mobile</option>
+															<option value="reseller">Recharge-data</option>
+															<option value="user">Recharge-dth</option></select>
+														</div>
+													</div>
+                                                    <div class="col-lg-2 col-sm-12">
+                                                    <div class="form-group">
+                                                     <span class="help-block">User</span>
+														<select class="selectpicker" data-live-search="true">
+                                                 <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+                                                 <option data-tokens="mustard">Burger, Shake and a Smile</option>
+                                                 <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+                                               </select>
+                                               </div>
+													</div>
+													<div class="col-lg-2 col-sm-12">
+														<div class="form-group">
+                                                            <span class="help-block">Status</span>
+															<select id="type" class="form-control">
+                                                                <option value="All">All</option>
+                                                                <option value="voip">Success</option>
+                                                                <option value="dcard">Pending</option>
+                                                                <option value="rcard">Failed</option>
+													        </select>
+														</div>
+													</div>
+                                                   
+                                                    <div class="col-lg-2 col-sm-12">
+														<div class="form-group">
+															<input style="background-color:white; margin-top:29px;" type="button" class="btn btn-default btn-lg filter" value="Filter">
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+                </div>
+				
+				
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default card-view">
+							<div class="panel-wrapper collapse in">
+								<div class="panel-body">
+									<div class="table-wrap">
+										<div class="table-responsive">
+											<table id="example" class="table table-hover display  pb-30" >
+												<thead>
+													<tr>
+														<th>Sn</th>
+														<th>Transaction Id</th>
+														<th>Date Time</th>
+														<th>Type</th>
+														<th>Whom</th>
+														<th>User</th>
+														<th>Operator</th>
+														<th>Operator</th>
+														<th>Commision</th>
+														<th>Status</th>
+														
+														
+														
+														
+													</tr>
+												</thead>
+												<tfoot>
+													<tr>
+														<th>Sn</th>
+														<th>Transaction Id</th>
+														<th>Date Time</th>
+														<th>Type</th>
+														<th>Whom</th>
+														<th>User</th>
+														<th>Operator</th>
+														<th>Operator</th>
+														<th>Commision</th>
+														<th>Status</th>
+														
+														
+													</tr>
+												</tfoot>
+												<tbody>
+													<tr>
+														<td>Tiger Nixon</td>
+														<td>System Architect</td>
+														<td>Edinburgh</td>
+														<td>61</td>
+														<td>2011/04/25</td>
+														<td>Tiger Nixon</td>
+														<td>System Architect</td>
+														<td>Edinburgh</td>
+														<td>61</td>
+														<td>2011/04/25</td>
+														
+													</tr>
+													<tr>
+														<td>Garrett Winters</td>
+														<td>Accountant</td>
+														<td>Tokyo</td>
+														<td>63</td>
+														<td>2011/07/25</td>
+														<td>Tiger Nixon</td>
+														<td>System Architect</td>
+														<td>Edinburgh</td>
+														<td>61</td>
+														<td>2011/04/25</td>
+														
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>	
+					</div>
+				</div>
+				
+				
+			
+				
+				
+				
+				
+				
+			</div>
+			
+			<!-- Footer -->
+			<footer class="footer container-fluid pl-30 pr-30">
+				<div class="row">
+					<div class="col-sm-12">
+						<p>Developed and maintained by Nuvac technologies © 2018</p>
+					</div>
+				</div>
+			</footer>
+			<!-- /Footer -->
+			
+		</div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+    
+    
+    
+    <div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+       <form class="form-horizontal">
+                                  <div class="form-group"><label class="col-lg-2 control-label">Name:</label>
+                                        <div class="col-lg-4"><input type="text" id="name" placeholder="Name" class="form-control" disabled=""><input type="text" id="id" class="form-control" style="display:none"></div>
+                                    
+                                        <label class="col-lg-2 control-label">DOB:</label>
+                                        <div class="col-lg-4"><input type="date" id="dob" class="form-control"></div>
+                                  </div>
+                                  <div class="form-group"><label class="col-lg-2 control-label">Address:</label>
+                                        <div class="col-lg-4"><textarea placeholder="Address" id="address" class="form-control" rows="4"></textarea></div>
+                                        <label class="col-lg-2 control-label">Email:</label>
+                                        <div class="col-lg-4"><input type="email" placeholder="email" id="email" class="form-control"></div>
+                                  </div>
+                                  <div class="form-group"><label class="col-lg-2 control-label">Mobile:</label>
+                                        <div class="col-lg-4"><input type="text" id="mobile" placeholder="Mobile" class="form-control" disabled=""></div>
+                                        <label class="col-lg-2 control-label">Password:</label>
+                                        <div class="col-lg-4"><input type="text" id="pass" placeholder="Password" class="form-control"></div>
+                                  </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Balance:</label>
+                                        <div class="col-lg-4"><input type="text" id="balance" placeholder="Balance" class="form-control" disabled=""></div>
+                                    <label class="col-lg-2 control-label">Margin:</label>
+                                        <div class="col-lg-4"><input type="text" id="margin" placeholder="Margin" class="form-control"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Base currency:</label>
+                                        <div class="col-lg-4">
+                                        <select id="currency" class="form-control"><option value="Select Base Currency">Select Base Currency</option>
+                                            <option value="-1">Saudi Arabia Riyals - SAR</option>
+                                            <option value="America (United States) Dollars - USD">America (United States) Dollars – USD</option>
+                                            <option value="Afghanistan Afghanis - AFN">Afghanistan Afghanis – AFN</option>
+                                            <option value="Albania Leke - ALL">Albania Leke – ALL</option>
+                                            <option value="Algeria Dinars - DZD">Algeria Dinars – DZD</option>
+                                            <option value="Argentina Pesos - ARS">Argentina Pesos – ARS</option>
+                                            <option value="Australia Dollars - AUD">Australia Dollars – AUD</option>
+                                            <option value="Austria Schillings - ATS">Austria Schillings – ATS</option>
+                                            <option value="Bahamas Dollars - BSD">Bahamas Dollars – BSD</option>
+                                            <option value="Bahrain Dinars - BHD">Bahrain Dinars – BHD</option>
+                                            <option value="Bangladesh Taka - BDT">Bangladesh Taka – BDT</option>
+                                            <option value="Barbados Dollars - BBD">Barbados Dollars – BBD</option>
+                                            <option value="Belgium Francs - BEF">Belgium Francs – BEF</option>
+                                            <option value="Bermuda Dollars - BMD">Bermuda Dollars – BMD</option>
+
+                                            <option value="Brazil Reais - BRL">Brazil Reais – BRL</option>
+                                            <option value="Bulgaria Leva - BGN">Bulgaria Leva – BGN</option>
+                                            <option value="Canada Dollars - CAD">Canada Dollars – CAD</option>
+                                            <option value="CFA BCEAO Francs - XOF">CFA BCEAO Francs – XOF</option>
+                                            <option value="CFA BEAC Francs - XAF">CFA BEAC Francs – XAF</option>
+                                            <option value="Chile Pesos - CLP">Chile Pesos – CLP</option>
+
+                                            <option value="China Yuan Renminbi - CNY">China Yuan Renminbi – CNY</option>
+                                            <option value="RMB (China Yuan Renminbi) - CNY">RMB (China Yuan Renminbi) – CNY</option>
+                                            <option value="Colombia Pesos - COP">Colombia Pesos – COP</option>
+                                            <option value="CFP Francs - XPF">CFP Francs – XPF</option>
+                                            <option value="Costa Rica Colones - CRC">Costa Rica Colones – CRC</option>
+                                            <option value="Croatia Kuna - HRK">Croatia Kuna – HRK</option>
+
+                                            <option value="Cyprus Pounds - CYP">Cyprus Pounds – CYP</option>
+                                            <option value="Czech Republic Koruny - CZK">Czech Republic Koruny – CZK</option>
+                                            <option value="Denmark Kroner - DKK">Denmark Kroner – DKK</option>
+                                            <option value="Deutsche (Germany) Marks - DEM">Deutsche (Germany) Marks – DEM</option>
+                                            <option value="Dominican Republic Pesos - DOP">Dominican Republic Pesos – DOP</option>
+                                            <option value="Dutch (Netherlands) Guilders - NLG">Dutch (Netherlands) Guilders – NLG</option>
+
+                                            <option value="Eastern Caribbean Dollars - XCD">Eastern Caribbean Dollars – XCD</option>
+                                            <option value="Egypt Pounds - EGP">Egypt Pounds – EGP</option>
+                                            <option value="Estonia Krooni - EEK">Estonia Krooni – EEK</option>
+                                            <option value="Euro - EUR">Euro – EUR</option>
+                                            <option value="Fiji Dollars - FJD">Fiji Dollars – FJD</option>
+                                            <option value="Finland Markkaa - FIM">Finland Markkaa – FIM</option>
+
+                                            <option value="France Francs - FRF*">France Francs – FRF*</option>
+                                            <option value="Germany Deutsche Marks - DEM">Germany Deutsche Marks – DEM</option>
+                                            <option value="Gold Ounces - XAU">Gold Ounces – XAU</option>
+                                            <option value="Greece Drachmae - GRD">Greece Drachmae – GRD</option>
+                                            <option value="Guatemalan Quetzal - GTQ">Guatemalan Quetzal – GTQ</option>
+                                            <option value="Holland (Netherlands) Guilders - NLG">Holland (Netherlands) Guilders – NLG</option>
+                                            <option value="Hong Kong Dollars - HKD">Hong Kong Dollars – HKD</option>
+
+                                            <option value="Hungary Forint - HUF">Hungary Forint – HUF</option>
+                                            <option value="Iceland Kronur - ISK">Iceland Kronur – ISK</option>
+
+                                            <option value="IMF Special Drawing Right - XDR">IMF Special Drawing Right – XDR</option>
+                                            <option value="India Rupees - INR">India Rupees – INR</option>
+                                            <option value="Indonesia Rupiahs - IDR">Indonesia Rupiahs – IDR</option>
+                                            <option value="Iran Rials - IRR">Iran Rials – IRR</option>
+
+                                            <option value="Iraq Dinars - IQD">Iraq Dinars – IQD</option>
+                                            <option value="Ireland Pounds - IEP*">Ireland Pounds – IEP*</option>
+                                            <option value="Israel New Shekels - ILS">Israel New Shekels – ILS</option>
+                                            <option value="Italy Lire - ITL*">Italy Lire – ITL*</option>
+                                            <option value="Jamaica Dollars - JMD">Jamaica Dollars – JMD</option>
+                                            <option value="Japan Yen - JPY">Japan Yen – JPY</option>
+
+                                            <option value="Jordan Dinars - JOD">Jordan Dinars – JOD</option>
+                                            <option value="Kenya Shillings - KES">Kenya Shillings – KES</option>
+                                            <option value="Korea (South) Won - KRW">Korea (South) Won – KRW</option>
+                                            <option value="Kuwait Dinars - KWD">Kuwait Dinars – KWD</option>
+                                            <option value="Lebanon Pounds - LBP">Lebanon Pounds – LBP</option>
+                                            <option value="Luxembourg Francs - LUF">Luxembourg Francs – LUF</option>
+
+                                            <option value="Malaysia Ringgits - MYR">Malaysia Ringgits – MYR</option>
+                                            <option value="Malta Liri - MTL">Malta Liri – MTL</option>
+                                            <option value="Mauritius Rupees - MUR">Mauritius Rupees – MUR</option>
+                                            <option value="Mexico Pesos - MXN">Mexico Pesos – MXN</option>
+                                            <option value="Morocco Dirhams - MAD">Morocco Dirhams – MAD</option>
+                                            <option value="Netherlands Guilders - NLG">Netherlands Guilders – NLG</option>
+
+                                            <option value="New Zealand Dollars - NZD">New Zealand Dollars – NZD</option>
+                                            <option value="Norway Kroner - NOK">Norway Kroner – NOK</option>
+                                            <option value="Oman Rials - OMR">Oman Rials – OMR</option>
+                                            <option value="Pakistan Rupees - PKR">Pakistan Rupees – PKR</option>
+                                            <option value="Palladium Ounces - XPD">Palladium Ounces – XPD</option>
+                                            <option value="Peru Nuevos Soles - PEN">Peru Nuevos Soles – PEN</option>
+
+                                            <option value="Philippines Pesos - PHP">Philippines Pesos – PHP</option>
+                                            <option value="Platinum Ounces - XPT">Platinum Ounces – XPT</option>
+                                            <option value="Poland Zlotych - PLN">Poland Zlotych – PLN</option>
+                                            <option value="Portugal Escudos - PTE">Portugal Escudos – PTE</option>
+                                            <option value="Qatar Riyals - QAR">Qatar Riyals – QAR</option>
+                                            <option value="Romania New Lei - RON">Romania New Lei – RON</option>
+
+                                            <option value="Romania Lei - ROL">Romania Lei – ROL</option>
+                                            <option value="Russia Rubles - RUB">Russia Rubles – RUB</option>
+                                            <option value="Saudi Arabia Riyals - SAR">Saudi Arabia Riyals – SAR</option>
+                                            <option value="Silver Ounces - XAG">Silver Ounces – XAG</option>
+                                            <option value="Singapore Dollars - SGD">Singapore Dollars – SGD</option>
+                                            <option value="Slovakia Koruny - SKK">Slovakia Koruny – SKK</option>
+
+                                            <option value="Slovenia Tolars - SIT">Slovenia Tolars – SIT</option>
+                                            <option value="South Africa Rand - ZAR">South Africa Rand – ZAR</option>
+                                            <option value="South Korea Won - KRW">South Korea Won – KRW</option>
+                                            <option value="Spain Pesetas - ESP">Spain Pesetas – ESP</option>
+                                            <option value="Special Drawing Rights (IMF) - XDR">Special Drawing Rights (IMF) – XDR</option>
+                                            <option value="Sri Lanka Rupees - LKR">Sri Lanka Rupees – LKR</option>
+
+                                            <option value="Sudan Dinars - SDD">Sudan Dinars – SDD</option>
+                                            <option value="Sweden Kronor - SEK">Sweden Kronor – SEK</option>
+                                            <option value="Switzerland Francs - CHF">Switzerland Francs – CHF</option>
+                                            <option value="Taiwan New Dollars - TWD">Taiwan New Dollars – TWD</option>
+                                            <option value="Thailand Baht - THB">Thailand Baht – THB</option>
+                                            <option value="Trinidad and Tobago Dollars - TTD">Trinidad and Tobago Dollars – TTD</option>
+
+                                            <option value="Tunisia Dinars - TND">Tunisia Dinars – TND</option>
+                                            <option value="Turkey New Lira - TRY">Turkey New Lira – TRY</option>
+                                            <option value="United Arab Emirates Dirhams - AED">United Arab Emirates Dirhams – AED</option>
+                                            <option value="United Kingdom Pounds - GBP">United Kingdom Pounds – GBP</option>
+                                            <option value="United States Dollars - USD">United States Dollars – USD</option>
+                                            <option value="Venezuela Bolivares - VEB">Venezuela Bolivares – VEB</option>
+
+                                            <option value="Vietnam Dong - VND">Vietnam Dong – VND</option>
+                                            <option value="Zambia Kwacha - ZMK">Zambia Kwacha – ZMK</option>
+                                        </select></div>
+                                        <label class="col-lg-2 control-label">Transaction Limit:</label>
+                                        <div class="col-lg-4"><input type="text" id="tlimit" placeholder="Transaction Limit" class="form-control"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Pin:</label>
+                                        <div class="col-lg-4"><input type="text" id="pin" placeholder="pin" class="form-control"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Accesss control:</label>
+                                        
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">IOR:</label>
+                                        <div class="col-lg-4"><input type="checkbox" id="gulf" name="gulf" class="form-control"></div>
+                                    <label class="col-lg-2 control-label">V Cloud:</label>
+                                        <div class="col-lg-4"><input type="checkbox" id="vcloud" name="vcloud" class="form-control"></div>
+                                </div>
+                            
+                            </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+       <button type="button" class="btn btn-primary pull-left" >Save</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="select css/bootstrap-select.js" defer></script>
+	
+	  <!-- jQuery -->
+    <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    
+	<!-- Data table JavaScript -->
+	<script src="vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script src="vendors/bower_components/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script src="vendors/bower_components/jszip/dist/jszip.min.js"></script>
+	<script src="vendors/bower_components/pdfmake/build/pdfmake.min.js"></script>
+	<script src="vendors/bower_components/pdfmake/build/vfs_fonts.js"></script>
+	
+	<script src="vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script src="vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script src="dist/js/export-table-data.js"></script>
+	
+	
+	<!-- Slimscroll JavaScript -->
+	<script src="dist/js/jquery.slimscroll.js"></script>
+	
+
+	<!-- Init JavaScript -->
+	<script src="dist/js/init.js"></script>
+	
+	
+</body>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var mySelect = $('#first-disabled2');
+
+    $('#special').on('click', function () {
+      mySelect.find('option:selected').prop('disabled', true);
+      mySelect.selectpicker('refresh');
+    });
+
+    $('#special2').on('click', function () {
+      mySelect.find('option:disabled').prop('disabled', false);
+      mySelect.selectpicker('refresh');
+    });
+
+    $('#basic2').selectpicker({
+      liveSearch: true,
+      maxOptions: 1
+    });
+  });
+	  
+	  
+	
+$(document).ready(function() {
+	"use strict";
+	
+	$('#datable_1').DataTable();
+} );  
+	  
+	  
+	  
+	  
+</script>  
+</html>

@@ -1,0 +1,676 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <title>
+        OliveMPay
+      </title>
+      <meta name="description" content="Jetson is a Dashboard & Admin Site Responsive Template by hencework." />
+      <meta name="keywords" content="" />
+      <meta name="author" content="hencework" />
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="favicon.ico">
+      <link rel="icon" href="favicon.ico" type="image/x-icon">
+      <link href="{% static "vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" %}" rel="stylesheet" type="text/css"/>
+      <!-- Custom CSS -->
+      <link href="{% static "dist/css/style.css" %}" rel="stylesheet" type="text/css">
+      <link href="{% static "vendors/bower_components/switchery/dist/switchery.css" %}" rel="stylesheet" type="text/css">
+      <!-- jQuery -->
+      <script src="{% static "vendors/bower_components/jquery/dist/jquery.min.js" %}"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+   </head>
+   <body>
+      <!-- Preloader -->
+      <div class="preloader-it">
+         <div class="la-anim-1"></div>
+      </div>
+
+      <!-- /Preloader -->
+      <!-- Top Menu Items -->
+        <nav class="navbar navbar-inverse">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#">OliveMPay</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li><a href="{% url "homePage" %}">Home</a></li>
+                <li><a href="{% url "profile" %}">Edit Profile</a></li>
+                 <li class="">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">User Management
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li><a href="{% url "addReseller" %}">Add Reseller</a></li>
+                       <li><a href="{% url "addUser" %}">Add User</a></li>
+                       <li><a href="{% url "viewReseller" %}">View Reseller</a></li>
+                       <li><a href="{% url "viewUser" %}">View User</a></li>
+                    </ul>
+                 </li>
+                 <li class="">
+                    <a id="bm" class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Balance Management	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                         <a href="{% url "balanceTransfer" %}">Balance transfer</a>
+                       </li>
+                       <li>
+                         <a href="{% url "addPayment" %}">Add Payment</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="re" class="dropdown-toggle" data-toggle="dropdown" href="#">Reports  <span class="caret"></span> </a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "vcloudreport" %}">Vcloud Report</a>
+                       </li>
+                       <li>
+                            <a href="{% url "bTReport" %}">Balance Transfer Report</a>
+                       </li>
+                       <li>
+                          <a href="{% url "paymentReport" %}">Payment Report</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="br" class="dropdown-toggle" data-toggle="dropdown" href="#">Brands
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li><a href="{% url "addvcloudbrand" %}">Add Brand</a></li>
+                       <li><a href="{% url "assignVcloudBrands" %}">Assign Brand</a></li>
+                       <li><a href="{% url "manageVcloudBrands" %}">Manage Brand</a></li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="pr" class="dropdown-toggle" data-toggle="dropdown" href="#">Products	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "addVcloudProduct" %}">Add Product Manually</a>
+                       </li>
+                       <li>
+                          <a href="{% url "addcsvProduct" %}">Assign Product as CSV file</a>
+                       </li>
+                       <li>
+                          <a href="{% url "vcloudmanageProduct" %}">Manage Products</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li><a id="st" href="{% url "vcloudStore" %}">Store</span></a>
+                 </li>
+
+
+
+		 <li>
+                     <a id="ma" class="dropdown-toggle" data-toggle="dropdown" href="#">Ads Management<span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li>
+                           <a href="{% url "addads" %}">Add Ads</a>
+                        </li>
+                        <li>
+                           <a  href="{% url "viewad" %}">Manage Ads</a>
+                        </li>
+                     </ul>
+                 </li>
+                 <li><a id="cp" href="{% url "vcloudchangepassword" %}">Change password</a></li>
+
+
+
+
+
+
+<li><a id="succ" class="dropdown-toggle" data-toggle="dropdown"  href="#">More</a>
+
+<ul class="dropdown-menu">
+                        <li><a id="cpli" href="{% url "vcloudchangepassword" %}">Change password</a></li>
+
+                       <li>
+
+
+<li class="dropdown-submenu">
+<a id="mali"  class="test" tabindex="-1" href="#">Ads Managements<span class="caret"></span></a>
+<ul class="dropdown-menu">
+
+<li><a tabindex="-1" href="{% url "addads" %}">Add Ads</a></li>
+<li><a tabindex="-1" href="{% url "viewad" %}">Manage Ads</a></li>
+
+</ul>
+</li>
+
+
+
+
+
+<li class="dropdown-submenu">
+<a id="mali"  class="test" tabindex="-1" href="#">Ads Managements<span class="caret"></span></a>
+<ul class="dropdown-menu">
+
+<li><a tabindex="-1" href="{% url "addads" %}">Add Ads</a></li>
+<li><a tabindex="-1" href="{% url "viewad" %}">Manage Ads</a></li>
+
+</ul>
+</li>
+
+
+
+
+<li class="dropdown-submenu">
+<a id="prli"  class="test" tabindex="-1" href="#">Products<span class="caret"></span></a>
+<ul class="dropdown-menu">
+
+<li><a tabindex="-1" href="{% url "addVcloudProduct" %}">Add Product Manually</a></li>
+<li><a tabindex="-1" href="{% url "addcsvProduct" %}">Assign Product as CSV file</a></li>
+ <li><a tabindex="-1" href="{% url "vcloudmanageProduct" %}">Manage Products</a></li>
+</ul>
+</li>
+
+
+
+
+
+ <li><a id="stli" href="{% url "vcloudStore" %}">Store</a>
+
+
+
+<li class="dropdown-submenu">
+<a id="brli"  class="test" tabindex="-1" href="#">Brands	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "addvcloudbrand" %}">Add Brand</li>
+<li><a tabindex="-1" href="{% url "assignVcloudBrands" %}">Assign Brand</a></li>
+<li><a tabindex="-1" href="{% url "manageVcloudBrands" %}">Manage Brand</a></li>
+</ul>
+</li>
+
+
+
+
+<li class="dropdown-submenu">
+<a id="reli"  class="test" tabindex="-1" href="#">Reports 	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "vcloudreport" %}">Vcloud Report</a></li>
+<li><a tabindex="-1" href="{% url "bTReport" %}">Balance Transfer Report</a></li>
+<li><a tabindex="-1" href="{% url "paymentReport" %}">Payment Report</a></li>
+</ul>
+</li>
+
+
+
+
+
+ <li class="dropdown-submenu">
+<a id="bmli"  class="test" tabindex="-1" href="#">Balance Management	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "balanceTransfer" %}">Balance transfer</a></li>
+<li><a tabindex="-1" href="{% url "addPayment" %}">Add Payment</a></li>
+
+
+</ul>
+</li>
+
+
+                     </ul>
+
+
+
+
+</li>
+
+
+
+
+              </ul>
+              <ul class="nav navbar-nav navbar-right"><li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.name }}	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "logout" %}">Logout</a>
+                       </li>
+                    </ul>
+                 </li>
+              </ul>
+            </div>
+         </div>
+      </nav>
+<style>
+
+#succ{display:none;}
+#mali{display:none;}
+#stli{display:none;}
+#brli{display:none;}
+#reli{display:none;}
+#bmli{display:none;}
+@media (max-width: 1523px){
+
+
+#succ{
+display:block;
+
+}
+#cp{ display:none;}
+
+}
+@media (max-width: 1443px){
+
+#ma{display:none;}
+#mali{display:block;}
+
+}
+
+@media (max-width:1292px){
+
+#st{display:none;}
+#stli{display:block;}
+}
+
+@media (max-width:1220px){
+
+#pr{display:none;}
+#prli{display:block;}
+}
+
+@media (max-width:1120px){
+
+#br{display:none;}
+#brli{display:block;}
+}
+@media (max-width:1120px){
+
+#re{display:none;}
+#reli{display:block;}
+}
+
+@media (max-width:940px){
+
+#bm{display:none;}
+#bmli{display:block;}
+}
+
+
+
+</style>
+<script>
+$(document).ready(function(){
+$('.dropdown-submenu a.test').on("click", function(e){
+$(this).next('ul').toggle();
+e.stopPropagation();
+e.preventDefault();
+});
+});
+</script>
+
+      <!-- /Top Menu Items -->
+      <!-- Left Sidebar Menu -->
+      <!-- /Left Sidebar Menu -->
+      <!-- Right Sidebar Menu -->
+      <style>
+         .tab {
+         background: #;
+         height: 50px;
+         }
+      </style>
+      <div class="page-wrapper" style="padding: 0px 20px;">
+         <div class="col-lg-12 col-xs-offset-3 col-sm-offset-5 col-lg-offset-0">
+            <div class="col-lg-2 col-lg-offset-3 tab">
+               <a href="{% url "homePage" %}" class="btn btn-success" style="background: #ffa200;border: none; padding: 12px 19px">
+               Vcloud Cards</a>
+            </div>
+            <div class="col-lg-2 tab">
+               <a href="{% url "adminDcardDashboard" %}" class="btn  btn-success">
+               Data Cards</a>
+            </div>
+            <div class="col-lg-2 tab">
+               <a href="{% url "adminRcardDashboard" %}" class="btn  btn-success">
+               Recharge Cards</a>
+            </div>
+            <br>
+         </div>
+         <div class="row">
+            <div class="col-md-12">
+               <div class="panel panel-default card-view">
+                  <div class="panel-wrapper collapse in">
+                     <div class="panel-body">
+                        <div class="row">
+                           <div class="col-sm-12 col-xs-12">
+                              <div class="form-wrap">
+                                 <form action="{% url "filtervcloudhomepage" %}" method="POST">
+                                   {% csrf_token %}
+                                    <div class="form-body">
+                                       <div class="row">
+                                          <div class="col-md-3">
+                                             <div class="form-group mb-0">
+                                                <label class="control-label mb-10 text-left">
+                                                From Date</label>
+                                                {{ filterform.fromdate }}
+                                             </div>
+                                          </div>
+                                          <!--/span-->
+                                          <div class="col-md-3">
+                                             <div class="form-group">
+                                                <label class="control-label mb-10">
+                                                To Date</label>
+                                                {{ filterform.todate }}
+                                             </div>
+                                          </div>
+                                          <!--/span-->
+                                          <!-- /Row -->
+                                          <div class="col-md-2">
+                                             <div class="form-group">
+                                                <label class="control-label mb-10">
+                                                User Type</label>
+                                                <select class="form-control" id="id_usertype" name="usertype" data-placeholder="Choose a Category" tabindex="1">
+                                                   <option value="Reseller" selected>Reseller</option>
+                                                   <option value="User">User</option>
+                                                </select>
+                                             </div>
+                                          </div>
+                                          <!--/span-->
+                                          <div class="col-md-2">
+                                             <div class="form-group">
+                                                <label class="control-label mb-10">
+                                                User</label>
+                                                <select class="form-control" id="user" name = "username" data-placeholder="Choose a Category" tabindex="1">
+
+                                                  {% for obj in reseller %}
+                                                   <option value="{{ obj.username }}"> {{ obj.name }}</option>
+                                                  {% endfor %}
+                                                </select>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-2">
+                                             <div class="form-group">
+                                                <h4><br></h4>
+                                                <button class="btn btn-success">Filter</button>
+                                             </div>
+                                          </div>
+                                       </div>
+                                 </form>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <style>
+            .box {
+            background: #f00;
+            height: 130px;
+            }
+            .box2 {
+            background: #f00;
+            height: 130px;
+
+            border-left:2px solid #fff;
+            }
+            .box h4,
+            h5,
+            h6 {
+            color: #fff;
+            }
+            .box2 h4,
+            h5,
+            h6 {
+            color: #fff;
+            }
+            .gap {
+            height: 20px;
+            }
+            h5 br {
+            display: none
+            }
+            @media only screen and (max-width: 1200px) {
+            .box {
+            margin-left: 0px;
+            }
+            .box2 {
+            margin-left: 0px;
+            }
+            h5 br {
+            display: block
+            }
+            .gap {
+            height: 20px;
+            }
+            }
+         </style>
+         <div class="col-lg-7 ">
+            <div class="col-lg-6  box">
+               <br>
+               <center>
+                  <h4>{{ boxval.noofrecords }}</h4>
+                  <h5>No Of Purchases</h5>
+                  <h6>From {{ last_month }}</h6>
+               </center>
+            </div>
+            <h5><br></h5>
+            <div class="col-lg-6  box2">
+               <br>
+               <center>
+                  <h4>{{ boxval.quantitysum }}</h4>
+                  <h5>No Of Total Quantity</h5>
+                  <h6>From {{ last_month }}<br></h6>
+               </center>
+            </div>
+            <div class="col-lg-12 gap">
+            </div>
+            <div class="col-lg-6  box">
+               <br>
+               <center>
+                  <h4>{{ boxval.productsum }}</h4>
+                  <h5>Total Transaction Amount</h5>
+                  <h6>From {{ last_month }}</h6>
+               </center>
+               <br>
+            </div>
+            <br>
+            <div class="col-lg-6  box2">
+               <br>
+               <center>
+                  <h4>{{ boxval.profitsum }}</h4>
+                  <h5>Total Commission</h5>
+                  <h6>From {{ last_month }}</h6>
+               </center>
+            </div>
+         </div>
+         <div class="col-sm-12 col-lg-5">
+            <br>
+            <div class="panel panel-default card-view">
+               <div class="panel-heading">
+                  <div class="pull-left">
+                     <h6 class="panel-title txt-dark">Top Users</h6>
+                  </div>
+                  <div class="clearfix"></div>
+               </div>
+               <div class="panel-wrapper collapse in">
+                  <div class="panel-body">
+                     <div class="table-wrap">
+                        <div class="table-responsive">
+                           <div id="datable_1_wrapper" class="dataTables_wrapper">
+                              <table id="datable_1" class="table table-hover display  pb-30 dataTable" role="grid" aria-describedby="datable_1_info">
+                                 <thead>
+                                    <tr role="row">
+                                       <th>Name</th>
+                                       <th>Amount</th>
+                                    </tr>
+                                 </thead>
+                                 <tfoot>
+                                    <tr>
+                                       <th>Name</th>
+                                       <th>Amount</th>
+                                    </tr>
+                                 </tfoot>
+                                 <tbody>
+                                   {% for t in topuser %}
+                                    <tr>
+                                       <td>{{ t.user }}</td>
+                                       <td>{{ t.amount}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-sm-12 col-lg-8">
+            <div class="panel panel-default card-view">
+               <div class="panel-heading">
+                  <div class="pull-left">
+                     <h6 class="panel-title txt-dark">Recent Transations</h6>
+                  </div>
+                  <div class="clearfix"></div>
+               </div>
+               <div class="panel-wrapper collapse in">
+                  <div class="panel-body">
+                     <div class="table-wrap">
+                        <div class="table-responsive">
+                           <div id="datable_2_wrapper" class="dataTables_wrapper">
+                              <table id="datable_2" class="table table-hover display  pb-30 dataTable" role="grid" aria-describedby="datable_2_info">
+                                 <thead>
+                                    <tr role="row">
+                                       <th>Datetime</th>
+                                       <th>Brand</th>
+                                       <th>User</th>
+                                       <th>Quantity</th>
+                                       <th>Rate</th>
+                                       <th>Status</th>
+                                    </tr>
+                                 </thead>
+                                 <tfoot>
+                                    <tr>
+                                      <th>Datetime</th>
+                                      <th>Brand</th>
+                                      <th>User</th>
+                                      <th>Quantity</th>
+                                      <th>Rate</th>
+                                      <th>Status</th>
+                                    </tr>
+                                 </tfoot>
+                                 <tbody>
+                                   {% for i in recenttransactions %}
+                                    <tr>
+                                       <td>{{ i.date }}</td>
+                                       <td>{{ i.brand }}</td>
+                                       <td>{{ i.saleduser }}</td>
+                                       <td>{{ i.quantity }}</td>
+                                       <td>{{ i.amount }}</td>
+                                       <td>Completeed</td>
+                                    </tr>
+                                    {% endfor %}
+
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-sm-12 col-lg-4">
+            <div class="panel panel-default card-view">
+               <div class="panel-heading">
+                  <div class="pull-left">
+                     <h6 class="panel-title txt-dark">Products</h6>
+                  </div>
+                  <div class="clearfix"></div>
+               </div>
+               <div class="panel-wrapper collapse in">
+                  <div class="panel-body">
+                     <div class="table-wrap">
+                        <div class="table-responsive">
+                           <div id="datable_3_wrapper" class="dataTables_wrapper">
+
+                              <table id="datable_3" class="table table-hover display  pb-30 dataTable" role="grid" aria-describedby="datable_3_info">
+                                 <thead>
+                                    <tr role="row">
+                                       <th>Brand</th>
+                                       <th>Rate</th>
+                                       <th>Quantity</th>
+                                       <th>Total Cost</th>
+                                    </tr>
+                                 </thead>
+                                 <tfoot>
+                                    <tr>
+                                      <th>Brand</th>
+                                      <th>Rate</th>
+                                      <th>Quantity</th>
+                                      <th>Total Cost</th>
+                                    </tr>
+                                 </tfoot>
+                                 <tbody>
+                                   {% for k in products %}
+                                    <tr role="row" class="odd">
+                                       <td>{{ k.brand }}</td>
+                                       <td>{{ k.denomination }}</td>
+                                       <td>{{ k.count}}</td>
+                                       <td>{{ k.totalcost }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <script>
+      $(document).ready(function(){
+        $("#datable_2").dataTable({});
+        $("#datable_3").dataTable({});
+        $("#datable_1").dataTable({});
+        $('.datetime-input').datetimepicker({
+            format:'YYYY-MM-DD HH:mm:ss'
+        });
+        $("#id_usertype").change(function () {
+          var usertype = $(this).val();
+          var select=$("#user").empty();
+          $.ajax({
+            url: '/ajax/get_user_or_reseller/',
+            data: {
+              'usertype': usertype
+            },
+            dataType: 'json',
+            success: function (data) {
+              console.log(data);
+              $.each(data,function(key,value){
+                console.log(value.pk)
+                $('#user').append("<option value="+value.pk+">"+value.fields.name+"</option>");
+              });
+            }
+          });
+        });
+        });
+      </script>
+      <script src="{% static "vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+      <!-- Fancy Dropdown JS -->
+      <script src="{% static "select css/bootstrap-select.js" %}" defer></script>
+
+      <script src="{% static "vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"%}"></script>
+
+      <script src="{% static "dist/js/dropdown-bootstrap-extended.js" %}"></script>
+      <!-- Switchery JavaScript -->
+      <script src="{% static "vendors/bower_components/switchery/dist/switchery.min.js" %}"></script>
+      <script src="{% static "dist/js/jquery.slimscroll.js" %}"></script>
+      <!-- Init JavaScript -->
+      <script src="{% static "dist/js/init.js" %}"></script>
+   </body>
+</html>

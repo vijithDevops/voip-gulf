@@ -1,0 +1,403 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <title>
+         OliveMPay
+      </title>
+      <meta name="description" content="" />
+      <meta name="keywords" content="" />
+      <meta name="author" content=""/>
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="favicon.ico">
+      <link rel="icon" href="favicon.ico" type="image/x-icon">
+      <link href="{% static "dist/css/style.css" %}" rel="stylesheet" type="text/css">
+      <script src="{% static "vendors/bower_components/jquery/dist/jquery.min.js" %}"></script>
+      <link href="{% static "dist/jquery.bootstrap-touchspin.css" %}" rel="stylesheet" type="text/css" media="all">
+      <link href="{% static "dist/sweetalert.css" %}" rel="stylesheet" type="text/css">
+      <script src="{% static "dist/sweetalert2.min.js" %}"></script>
+   </head>
+   <body>
+      <!-- Preloader -->
+      <div class="preloader-it">
+         <div class="la-anim-1"></div>
+      </div>
+      <!-- /Preloader -->
+      <nav class="navbar navbar-inverse">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#">OliveMPay</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                   <li><a href="{% url "uservcloudhomePage" %}">Home</a></li>
+                   <li><a href="{% url "uservcloudprofile" %}">Edit Profile</a></li>
+                   <li>
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reports  <span class="caret"></span> </a>
+                      <ul class="dropdown-menu">
+                         <li>
+                            <a href="{% url "uservcloudreport" %}">Vcloud Report</a>
+                         </li>
+			<li>
+                            <a href="{% url "uservcloudbtreport" %}">Balance Transfer Report</a>
+                         </li>
+                         <li>
+                            <a href="{% url "userpaymentreport" %}">Payment Report</a>
+                         </li>
+                      </ul>
+                   </li>
+                    <li><a href="{% url "userviewbrands" %}">View  Brand </a></li>
+                    <li><a href="{% url "uservcloudStore" %}">Store </a>
+                    </li>
+                    <li><a href="{% url "uservcloudchangepassword" %}">Change password</a></li>
+                 </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Balance: {{ user.balance }}</a></li>
+                <li><a href="#">Credit : {{ user.targetAmt }}</a></li>
+                <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.name }}	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "logout" %}">Logout</a>
+                       </li>
+                    </ul>
+                 </li>
+              </ul>
+            </div>
+         </div>
+      </nav>
+      <!-- Top Menu Items -->
+      <div class="mobile-only-brand pull-left">
+         <div class="nav-header pull-left">
+            <div class="logo-wrap">
+            </div>
+         </div>
+         <a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"></a>
+         <!--<a id="toggle_mobile_search" data-toggle="collapse" data-target="#search_form" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-search"></i></a>
+            -->
+         <a id="toggle_mobile_nav" class="mobile-only-view" href="javascript:void(0);"><i class="zmdi zmdi-more"></i></a>
+         <form id="search_form" role="search" class="top-nav-search collapse pull-left">
+            <div class="input-group">
+               <!--<input type="text" name="example-input1-group2" class="form-control" placeholder="Search">
+                  -->
+               <span class="input-group-btn">
+               <button type="button" class="btn  btn-default"  data-target="#search_form" data-toggle="collapse" aria-label="Close" aria-expanded="true"></button>
+               </span>
+            </div>
+         </form>
+      </div>
+      <div id="mobile_only_nav" class="mobile-only-nav pull-right">
+         <ul class="nav navbar-right top-nav pull-right">
+         </ul>
+      </div>
+      </nav>
+      <!-- /Top Menu Items -->
+      <!-- Left Sidebar Menu -->
+      <!-- /Left Sidebar Menu -->
+      <!-- Right Sidebar Menu -->
+      <style>
+         .tab{
+         background:#;
+         height: 50px;
+         }
+      </style>
+      <div class="page-wrapper" style="margin-left: 0px;">
+         <br>
+         <div class="col-lg-12 col-xs-offset-3 col-sm-offset-5 col-lg-offset-0">
+           <div class="col-lg-2 col-lg-offset-3 tab">
+              <a href="{% url "uservcloudStore" %}" class="btn btn-warning">
+              Vcloud</a>
+           </div>
+           <div class="col-lg-2 tab">
+              <a href="{% url "userdcardstore" %}" class="btn btn-success">
+              Data Card</a>
+           </div>
+           <div class="col-lg-2 tab">
+              <a href="{% url "userrcardstore" %}" class="btn btn-success">
+              Recharge Cards</a>
+           </div>
+         </div>
+         <div class="col-lg-12"><br><br></div>
+                 <style>
+            #cutting
+            {
+            width:15%;
+            }
+            #noncutting
+            {
+            width:15%;
+            }
+
+      .card{width:100%;
+    	border:#eae5ea 1px solid;
+	height:290px;
+	float:left;
+	}
+
+
+            .card:hover{box-shadow: 7px 7px 19px -5px #888888;}
+            .card{border:#CCC 1px solid;}
+         </style>
+         <div class="col-lg-12" style="background:#fff; border:#CCC 1px solid;">
+            <br><br>
+            <div class="col-lg-11">
+               <center>
+                 {% for j,k in btnlist %}
+                  <tr>
+                    <a href="/user/vcloud/store/filter/{{ j }}" class="btn {{ k }}">{{ j }}</a>
+                  </tr>
+                  {% endfor %}
+               </center>
+               <br>
+               <br>
+            </div>
+         </div>
+         <div class="col-lg-8" style="background:#cccccc5e;padding: 0px;height:600px;">
+           {% for pdct in pdcts %}
+            <div class="col-lg-2 productdetails" style="width:230px; float:left;" >
+               <br>
+               <div class="card product__details"  style="background: #fff; padding:2%; margin:1%; "  data-toggle="modal" data-target="#myModal">
+                  <img class="card-img-top product__logo" src="/media/{{ pdct.brand__logo }}" width="100%" alt="Card image cap">
+                  <div class="card-body product__innerDiv">
+                    <p class="card-text product__brandid" style="display:none;">{{ pdct.brand__id }}</p>
+                     <h5 class="card-title product__brandname">{{ pdct.brand__brand}}</h5>
+                     <p class="card-text product__denomination">
+                       <span class="product__rate" style="color:red;font-weight: bold;font-family: verdana;">{{ pdct.brand__denomination }}</span>
+                       <span class="product__currency" style="color:red;font-weight: bold;font-family: verdana;">{% if pdct.brand__currency %}{{ pdct.brand__currency }}{% else %} Not Described {% endif %}</span>
+                     </p>
+                     <p class="card-text product__description">
+                       {% if pdct.brand__description|length > 0 %}
+                       {{ pdct.brand__description }}
+                       {% else %}
+                       Not Described
+                       {% endif %}
+                     </p>
+                     <p class="card-text product_count" style="display:none;">{{ pdct.productcount }}</p>
+                  </div>
+               </div>
+            </div>
+            {% endfor %}
+         </div>
+         <div class="col-md-4">
+            <div class="panel panel-default card-view">
+               <div class="panel-heading">
+                  <div class="pull-left">
+                     <h6 class="panel-title txt-dark">Promotions</h6>
+                  </div>
+                  <div class="clearfix"></div>
+               </div>
+               <div class="panel-wrapper collapse in">
+                  <div class="panel-body">
+                     <!-- START carousel-->
+                     <div id="carousel-example-captions" data-ride="carousel" class="carousel slide mt-40">
+                       <ol class="carousel-indicators">
+                         {% for i in ads %}
+                         {% if forloop.first %}
+                          <li data-target="#myCarousel" data-slide-to="{{ forloop.counter }}" class="active"></li>
+                          {% else %}
+                          <li data-target="#myCarousel" data-slide-to="{{ forloop.counter }}"></li>
+                        {% endif %}
+                        {% endfor %}
+                       </ol>
+                       <!-- Wrapper for slides -->
+                       <div class="carousel-inner">
+                         {% for i in ads %}
+                         {% if forloop.first %}
+                         <div class="item active">
+                           <img src="{{ i.adimage.url}}" alt="Los Angeles">
+                         </div>
+                         {% else %}
+                         <div class="item">
+                           <img src="{{ i.adimage.url}}" alt="Los Angeles">
+                         </div>
+                         {% endif %}
+                         {% endfor %}
+                       </div>
+                        <a href="#carousel-example-captions" role="button" data-slide="prev" class="left carousel-control"> <span aria-hidden="true" class="fa fa-angle-left"></span> <span class="sr-only">Previous</span> </a> <a href="#carousel-example-captions" role="button" data-slide="next" class="right carousel-control"> <span aria-hidden="true" class="fa fa-angle-right"></span> <span class="sr-only">Next</span> </a>
+                     </div>
+                     <!-- END carousel-->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="myModal" class="modal fade" role="dialog">
+         <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title" id="brandname"></h4>
+               </div>
+               <div class="modal-body">
+                  <div class="col-lg-6"><img id="pdlogo" src="" width="100%"></div>
+                  <div class="col-lg-6">
+                     <h3 class="m-t-none m-b"></h3>
+                     <h6 class="m-t-none m-b" id="brandid" style="display:none"></h6>
+                     <h3 class="m-t-none m-b" id="denomination">Rate: <span id="brandrate"></span>-<span id="brandcurrency"> </span></h3>
+                     <h5 class="m-t-none m-b" id="description"></h5>
+                     <div class="col-lg-10">
+                        <br>
+                        <br>
+                        <div class="input-group bootstrap-touchspin">
+                          <label for="ex_limit"></label>
+                          <input id="ex_limit" type="text" value="0" name="ex_limit">
+                        </div>
+                        <br>
+                        <button class="btn pull-right btn-success btn-alert" style="top: 5px">Buy</button>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                    <h4 class="totalcost"></h4>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Bootstrap Core JavaScript -->
+      <script>
+      $(document).ready(function(){
+        var maxLL=10;
+        $(".productdetails").click(function(){
+          var pd = $(this).children(".product__details");
+          var brand__logo = pd.children(".product__logo").attr('src');
+          var pid = pd.children(".product__innerDiv");
+          var brandid = pid.children(".product__brandid").html();
+          var brandname = pid.children(".product__brandname").html();
+          var deno = pid.children(".product__denomination");
+          var currency = deno.children(".product__currency").html();
+          var rate = deno.children(".product__rate").html();
+          var desc = pid.children(".product__description").html();
+          var count = pid.children(".product_count").html();
+          console.log(rate)
+          console.log(count);
+          maxLL = count;
+          $("#ex_limit").val(0);
+          $("#ex_limit").trigger("touchspin.updatesettings", {max: maxLL});
+          document.getElementById("pdlogo").src=brand__logo;
+          document.getElementById("brandname").innerHTML=brandname;
+          document.getElementById("brandid").innerHTML=brandid;
+          document.getElementById("brandrate").innerHTML=rate;
+          document.getElementById("brandcurrency").innerHTML=currency;
+          $('.totalcost').text("Cost:" + rate + " ");
+        });
+        $("#ex_limit").TouchSpin({
+          min: 1,
+          max: maxLL,
+          mousewheel: true,
+          stepinterval: 50,
+          maxboostedstep: 10000000
+        });
+        $('#ex_limit').change(function (e) {
+          debugger;
+          var rate = document.getElementById("brandrate").innerHTML;
+          var d = $('#ex_limit').val();
+          var sum = parseFloat(rate) * parseFloat(d);
+          var c = $('#denomination').text();
+          $('.totalcost').text("Cost:" + sum + " ");
+        });
+        $(".btn-alert").click(function()
+        {
+          $('#myModal').modal('hide');
+          var amt = $('.totalcost').text();
+          swal({
+            title: 'Order confirmation',
+            text: 'The total Transaction Amount is '+amt+'!',
+            type: 'warning',
+            buttons: {
+              cancel: "Cancel",
+              Ok: {
+                text: "Ok",
+                value: true,
+              }
+            }
+        }).then((value) => {
+          if (value)
+          {
+            //alert(value)
+            var quantity = $('#ex_limit').val();
+            var amt = document.getElementById("brandrate").innerHTML;
+            var brandid = document.getElementById("brandname").innerHTML;
+            //alert(amt);
+            complete(brandid,amt,quantity)
+          }
+        });
+      });
+    });
+    function complete(brandid,amt, quantity){
+        //alert(brandid+" "+quantity+" "+amt);
+        $.ajax({
+          url: '/ajax/user_buy_vcloud_brands/',
+          method: 'POST',
+          data:  { "csrfmiddlewaretoken": '{{csrf_token}}',"brandid": brandid, "quantity": quantity, "amt": amt},
+          dataType: 'json',
+          success: function (data) {
+            console.log(data)
+            if(data.res_status=="success")
+            {
+              swal({
+                icon: "success",
+                title: "Success",
+                text: "The transaction is completed!",
+                type: "Success",
+                buttons: {
+                  cancel: "OK",
+                  print: {
+                    text: "Print",
+                    value: "print",
+                  },
+                  down: {
+                    text: "Download",
+                    value: "down",
+                  }
+                }
+              }).then((value) => {
+                switch (value) {
+                  case "print":
+                    var i;
+                    console.log(data.data[0]);
+                    var tesst = window.open("{% url "printlayout" %}", "myWindow", "width=218,height=400");
+                    $.each(data.data,function(key,value){
+                      tesst.document.write('<div><img src="'+value.brand_logo+'" width="120" height="120" style="display:block; margin-left:auto; margin-right:auto;"/></div>')
+                      tesst.document.write('<h3 style="text-align:center">www.olivempay.com</h3>');
+                      tesst.document.write('<h3 style="text-align:center">*******************</h3>');
+                      tesst.document.write('<h3 style="text-align:center">BRAND NAME: ' + value.brand + '</h3>');
+                      tesst.document.write('<h3 style="text-align:center">UN: ' + value.carduname + '</h3>');
+                      tesst.document.write('<h3 style="text-align:center">PSW: ' + value.password + '</h3>');
+                      tesst.document.write('<h3 style="text-align:center">USSD: *000*PIN#</h3>');
+                      tesst.document.write('<h3 style="text-align:center">*******************</h3>');
+                      tesst.document.write('<h3 style="text-align:center">' + value.sdate + '</h3>');
+                      tesst.document.write('<h3 style="text-align:center">Powered by Olive Mpay</h3>');
+                      tesst.document.write('<h3 style="text-align:center">_____________________</h3>');
+                      tesst.document.write('<h3 style="text-align:center">                     </h3>');
+                    });
+                    tesst.document.write('<script>window.print();</scr'+'ipt>');
+                    tesst.document.write('<script>self.close();</scr'+'ipt>');
+                    window.location.href = "{% url "uservcloudStore" %}";
+                    break;
+                  case "down":
+                    $.each(data.data,function(key,value){
+                      window.location.href = "/vcloud/user/downloadproduct/"+data.trid;
+                    });
+                    break;
+                  default:
+                  }
+                });
+            }
+          }
+        });
+      }
+      </script>
+      <script src="{% static "dist/jquery.bootstrap-touchspin.js" %}"></script>
+      <script src="{% static "vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+      <script src="{% static "dist/js/jquery.slimscroll.js" %}"></script><!-- Data table JavaScript -->
+      <script src="{% static "dist/js/init.js" %}"></script>
+   </body>
+</html>

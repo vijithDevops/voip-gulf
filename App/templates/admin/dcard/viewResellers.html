@@ -1,0 +1,560 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <title>OliveMPay</title>
+      <meta name="description" content="" />
+      <meta name="keywords" content="sherin shaju ,sherin shaju athickal" />
+      <meta name="Sherin Shaju" content="Sherin"/>
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="favicon.ico">
+      <link rel="icon" href="favicon.ico" type="image/x-icon">
+      <!-- Data table CSS -->
+      <link href="{% static "vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" %}" rel="stylesheet" type="text/css"/>
+      <!-- Custom CSS -->
+      <link href="{% static "dist/css/style.css" %}" rel="stylesheet" type="text/css">
+      <!-- jQuery -->
+      <script src="{% static "vendors/bower_components/jquery/dist/jquery.min.js" %}"></script>
+      <style>
+         .navbar.navbar-inverse {
+         background: #000000d9;
+         }
+         .navbar {
+         border-radius: 0px;
+         }
+         .page-wrapper {
+         margin-left: 19px;
+         padding: 30px 20px;
+         position: relative;
+         -webkit-transition: all 0.4s ease;
+         -moz-transition: all 0.4s ease;
+         transition: all 0.4s ease;
+         left: 0;
+         }
+         @media only screen and (max-width: 767px) {
+         .page-wrapper {
+         margin-left: 19px;
+         padding: 0px 0px;
+         position: relative;
+         -webkit-transition: all 0.4s ease;
+         -moz-transition: all 0.4s ease;
+         transition: all 0.4s ease;
+         left: 0;
+         }
+         }
+      </style>
+   </head>
+   <body>
+      <!-- Preloader -->
+      <div class="preloader-it">
+         <div class="la-anim-1"></div>
+      </div>
+      <!-- /Preloader -->
+      <div class="wrapper theme-6-active pimary-color-yellow">
+         <nav class="navbar navbar-inverse">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#">OliveMPay</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li><a href="{% url "adminDcardDashboard" %}">Home</a></li>
+                <li><a href="{% url "profiledcard" %}">Edit Profile</a></li>
+                 <li class="">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">User Management
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li><a href="{% url "addResellerDcard" %}">Add Reseller</a></li>
+                       <li><a href="{% url "addUserDcard" %}">Add User</a></li>
+                       <li><a href="{% url "viewResellerDcard" %}">View Reseller</a></li>
+                       <li><a href="{% url "viewUserDcard" %}">View User</a></li>
+                    </ul>
+                 </li>
+                 <li class="">
+                    <a id="bm" class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Balance Management	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                         <a href="{% url "balanceTransferDcard" %}">Balance transfer</a>
+                       </li>
+                       <li>
+                         <a href="{% url "addPaymentDcard" %}">Add Payment</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="re" class="dropdown-toggle" data-toggle="dropdown" href="#">Reports  <span class="caret"></span> </a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "datacardreport" %}">Vcloud Report</a>
+                       </li>
+                       <li>
+                            <a href="{% url "bTReportDcard" %}">Balance Transfer Report</a>
+                       </li>
+                       <li>
+                          <a href="{% url "paymentReportDcard" %}">Payment Report</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="br" class="dropdown-toggle" data-toggle="dropdown" href="#">Brands
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li><a href="{% url "addDCardbrand" %}">Add Brand</a></li>
+                       <li><a href="{% url "assignDCardBrands" %}">Assign Brand</a></li>
+                       <li><a href="{% url "manageDCardBrands" %}">Manage Brand</a></li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="pr" class="dropdown-toggle" data-toggle="dropdown" href="#">Products	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "adddcardProduct" %}">Add Product Manually</a>
+                       </li>
+                       <li>
+                          <a href="{% url "adddcardcsvProduct" %}">Assign Product as CSV file</a>
+                       </li>
+                       <li>
+                          <a href="{% url "dcardmanageProduct" %}">Manage Products</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li><a id="st" href="{% url "dcardstore" %}">Store</span></a>
+                 </li>
+
+
+
+		 <li>
+                     <a id="ma" class="dropdown-toggle" data-toggle="dropdown" href="#">Ads Management<span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li>
+                           <a href="{% url "dcardaddads" %}">Add Ads</a>
+                        </li>
+                        <li>
+                           <a  href="{% url "dcardviewad" %}">Manage Ads</a>
+                        </li>
+                     </ul>
+                 </li>
+                 <li><a id="cp" href="{% url "dcardchangepassword" %}">Change password</a></li>
+
+
+
+
+<li><a id="succ" class="dropdown-toggle" data-toggle="dropdown"  href="#">More</a>
+
+<ul class="dropdown-menu">
+                        <li><a id="cpli" href="{% url "dcardchangepassword" %}">Change password</a></li>
+
+                       <li>
+                     <a id="mali" class="dropdown-toggle" data-toggle="dropdown" href="#">Ads Management<span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li>
+                           <a href="{% url "dcardaddads" %}">Add Ads</a>
+                        </li>
+                        <li>
+                           <a  href="{% url "dcardviewad" %}">Manage Ads</a>
+                        </li>
+                     </ul>
+                 </li>
+
+
+<li class="dropdown-submenu">
+<a id="prli"  class="test" tabindex="-1" href="#">Products<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "adddcardProduct" %}">Add Product Manually</li>
+<li><a tabindex="-1" href="{% url "adddcardProduct" %}">Add Product Manually</a></li>
+<li><a tabindex="-1" href="{% url "adddcardcsvProduct" %}">Assign Product as CSV file</a></li>
+ <li><a tabindex="-1" href="{% url "dcardmanageProduct" %}">Manage Products</a></li>
+</ul>
+</li>
+
+
+
+
+
+ <li><a id="stli" href="{% url "dcardstore" %}">Store</a>
+
+
+
+<li class="dropdown-submenu">
+<a id="brli"  class="test" tabindex="-1" href="#">Brands	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "addDCardbrand" %}">Add Brand</li>
+<li><a tabindex="-1" href="{% url "assignDCardBrands" %}">Assign Brand</a></li>
+<li><a tabindex="-1" href="{% url "manageDCardBrands" %}">Manage Brand</a></li>
+</ul>
+</li>
+
+
+
+
+<li class="dropdown-submenu">
+<a id="reli"  class="test" tabindex="-1" href="#">Reports 	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "datacardreport" %}">Vcloud Report</a></li>
+<li><a tabindex="-1" href="{% url "bTReportDcard" %}">Balance Transfer Report</a></li>
+<li><a tabindex="-1" href="{% url "paymentReportDcard" %}">Payment Report</a></li>
+</ul>
+</li>
+
+
+
+
+
+ <li class="dropdown-submenu">
+<a id="bmli"  class="test" tabindex="-1" href="#">Balance Management	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "balanceTransferDcard" %}">Balance transfer</a></li>
+<li><a tabindex="-1" href="{% url "addPaymentDcard" %}">Add Payment</a></li>
+<li class="dropdown-submenu">
+<a class="test" href="#">Another dropdown <span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a href="#">3rd level dropdown</a></li>
+<li><a href="#">3rd level dropdown</a></li>
+</ul>
+</li>
+</ul>
+</li>
+
+
+                     </ul>
+
+
+
+
+</li>
+
+
+
+
+              </ul>
+              <ul class="nav navbar-nav navbar-right"><li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.name }}	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "logout" %}">Logout</a>
+                       </li>
+                    </ul>
+                 </li>
+              </ul>
+            </div>
+         </div>
+      </nav>
+
+<style>
+
+#succ{display:none;}
+#mali{display:none;}
+#stli{display:none;}
+#brli{display:none;}
+#reli{display:none;}
+#bmli{display:none;}
+@media (max-width: 1523px){
+
+
+#succ{
+display:block;
+
+}
+#cp{ display:none;}
+
+}
+@media (max-width: 1443px){
+
+#ma{display:none;}
+#mali{display:block;}
+
+}
+
+@media (max-width:1292px){
+
+#st{display:none;}
+#stli{display:block;}
+}
+
+@media (max-width:1220px){
+
+#pr{display:none;}
+#prli{display:block;}
+}
+
+@media (max-width:1120px){
+
+#br{display:none;}
+#brli{display:block;}
+}
+@media (max-width:1120px){
+
+#re{display:none;}
+#reli{display:block;}
+}
+
+@media (max-width:940px){
+
+#bm{display:none;}
+#bmli{display:block;}
+}
+
+
+
+</style>
+<script>
+$(document).ready(function(){
+$('.dropdown-submenu a.test').on("click", function(e){
+$(this).next('ul').toggle();
+e.stopPropagation();
+e.preventDefault();
+});
+});
+</script>
+
+         <!-- Main Content -->
+         <div class="page-wrapper">
+            <div class="container-fluid pt-25">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="panel panel-default card-view">
+                        <div class="panel-heading">
+                           <div class="pull-left">
+                              <h6 class="panel-title txt-dark">View User</h6>
+                           </div>
+                           <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-wrapper collapse in">
+                           <div class="panel-body">
+                              <div class="table-wrap">
+                                 <div class="table-responsive">
+                                    <table id="datable_1" class="table table-hover display  pb-30" >
+                                       <thead>
+                                          <tr>
+                                             <th>Name</th>
+                                             <th>Username</th>
+                                             <th>Email</th>
+                                             <th>Mobile</th>
+                                             <th>Credit balance</th>
+                                             <th>Sponser</th>
+                                             <th>Balance</th>
+                                             <th>Status</th>
+                                             <th>Action</th>
+                                          </tr>
+                                       </thead>
+                                       <tfoot>
+                                          <tr>
+                                             <th>Name</th>
+                                             <th>Username</th>
+                                             <th>Email</th>
+                                             <th>Mobile</th>
+                                             <th>Credit balance</th>
+                                             <th>Sponser</th>
+                                             <th>Balance</th>
+                                             <th>Status</th>
+                                             <th>Action</th>
+                                          </tr>
+                                       </tfoot>
+                                       <tbody>
+                                         {% for reseller in resellers %}
+                                          <tr>
+                                             <td>{{ reseller.name }}</td>
+                                             <td>{{ reseller.username }}</td>
+                                             <td>{{ reseller.email }}</td>
+                                             <td>{{ reseller.mobileno }}</td>
+                                             <td>{{ reseller.targetAmt }}</td>
+                                             <td>{{ reseller.sponserId.name }}</td>
+                                             <td>{{ reseller.balance }}</td>
+                                             <td>{{ reseller.status }}</td>
+                                             <td><button class="btn  btn-primary" onclick="reselleredit('{{ reseller.username }}')" data-toggle="modal" data-target="#myModal">Edit</button></td>
+                                          </tr>
+                                          {% endfor %}
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- /Row -->
+            </div>
+            <!-- Footer -->
+            <footer class="footer container-fluid pl-30 pr-30">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <p>Developed and maintained by Nuvac technologies © 2018</p>
+                  </div>
+               </div>
+            </footer>
+            <!-- /Footer -->
+         </div>
+         <!-- /Main Content -->
+      </div>
+      <!-- /#wrapper -->
+      <div class="modal" id="myModal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <!-- Modal Header -->
+               <div class="modal-header">
+                  <h4 class="modal-title">Manage Users</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <!-- Modal body -->
+               {% block content %}
+               <div class="modal-body">
+                  <form class="form-horizontal" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                     <div class="form-group">
+                        <label class="col-lg-2 control-label">Name:</label>
+                        <div class="col-lg-4"><input type="text" id="name" name="name" placeholder="Name" class="form-control"></div>
+                        <label class="col-lg-2 control-label">Address:</label>
+                        <div class="col-lg-4"><textarea placeholder="Address" name="address" id="address" class="form-control" rows="4"></textarea></div>
+                     </div>
+                     <div class="form-group">
+                       <label class="col-lg-2 control-label">Username:</label>
+                       <div class="col-lg-4">
+                         <input type="text" class="form-control" name="iuser" id="iuser" disabled>
+                       </div>
+                        <label class="col-lg-2 control-label">Email:</label>
+                        <div class="col-lg-4"><input type="email" placeholder="Email" id="email" name="email" class="form-control"></div>
+                     </div>
+                     <div class="form-group">
+                        <label class="col-lg-2 control-label">Mobile:</label>
+                        <div class="col-lg-4"><input type="text" id="mobile" name="mobileno" placeholder="Mobile" class="form-control"></div>
+                        <label class="col-lg-2 control-label">Transaction Limit:</label>
+                        <div class="col-lg-4"><input type="text" id="transactionlimit" name="retailerLimit" placeholder="Transaction Limit" class="form-control"></div>
+                     </div>
+                     <div class="form-group">
+                        <label class="col-lg-2 control-label">Balance:</label>
+                        <div class="col-lg-4"><input type="text" id="balance" name="balance" placeholder="Balance" class="form-control" disabled></div>
+                        <label class="col-lg-2 control-label">Margin:</label>
+                        <div class="col-lg-4"><input type="text" id="margin" name="margin" placeholder="Margin" class="form-control"></div>
+                     </div>
+                     <div class="form-group">
+                        <label class="col-lg-2 control-label">Accesss control</label>
+                     </div>
+                     <div class="form-group">
+                        <label class="col-lg-2 control-label">IOR:</label>
+                        <div class="col-lg-4"><input type="checkbox" id="gulf" name="recharge_status" class="form-control"></div>
+                        <label class="col-lg-2 control-label">V Cloud:</label>
+                        <div class="col-lg-4"><input type="checkbox" id="vcloud" name="vcloud_status" class="form-control"></div>
+                     </div>
+                     <div class="form-group pull-right">
+                       <button type="button" id="savebtn" class="btn btn-primary">Save</button>
+                       <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                     </div>
+                     <div>
+                       <a id="resetpassword" href="#" class="btn btn-danger">Reset Password</a>
+                       <a id="deactivateuser" href="#" class="btn btn-danger">Activate</a>
+                     </div>
+                  </form>
+               </div>
+               {% endblock %}
+               <!-- Modal footer -->
+               <div class="modal-footer">
+
+               </div>
+            </div>
+         </div>
+      </div>
+      <script>
+         document.addEventListener('DOMContentLoaded', function () {
+           var mySelect = $('#first-disabled2');
+
+           $('#special').on('click', function () {
+             mySelect.find('option:selected').prop('disabled', true);
+             mySelect.selectpicker('refresh');
+           });
+
+           $('#special2').on('click', function () {
+             mySelect.find('option:disabled').prop('disabled', false);
+             mySelect.selectpicker('refresh');
+           });
+
+           $('#basic2').selectpicker({
+             liveSearch: true,
+             maxOptions: 1
+           });
+         });
+
+         $(document).ready(function() {
+         "use strict";
+
+         $('#datable_1').DataTable();
+         $("#savebtn").click(function(){
+           var name = $("#name").val();
+           var username = $("#iuser").val();
+           var email = $("#email").val();
+           var mobileno = $("#mobile").val();
+           var balance = $("#balance").val();
+           var margin = $("#margin").val();
+           var transactionlimit = $("#transactionlimit").val();
+           var recharge_status = document.getElementById("gulf").checked;
+           var vcloud_status = document.getElementById("vcloud").checked;
+           console.log(username);
+           console.log(recharge_status);
+           $.ajax({
+             url: '{% url "submitEditUsers" %}',
+             data: {"name":name,"username":username,"email":email,"mobileno":mobileno,"balance":balance,"margin":margin,"transactionlimit":transactionlimit,"recharge_status":recharge_status,"vcloud_status":vcloud_status},
+             dataType: 'json',
+             success: function (data) {
+               console.log(data)
+               if(data.status=="Success")
+               {
+                 $('#myModal').modal('hide');
+                 document.location.reload();
+               }
+             }
+           });
+         });
+       });
+       function reselleredit(username)
+       {
+         $.ajax({
+           url: '/ajax/edit-reseller-edit/',
+           data: {
+             'username': username
+           },
+           dataType: 'json',
+           success: function (data) {
+             console.log(data)
+             href="/admin/dcard/reseller/passwordreset/"+data.username
+             $("#name").val(data.name);
+             $("#iuser").val(data.username);
+             $("#address").val(data.address);
+             $("#email").val(data.email );
+             $("#mobile").val(data.mobile);
+             $("#balance").val(data.balance);
+             $("#margin").val(data.margin);
+             $("#transactionlimit").val(data.retailerLimit);
+             document.getElementById("gulf").checked = data.ior;
+             document.getElementById("vcloud").checked = data.vcloud;
+             if(data.status)
+             {
+               $('#deactivateuser').html("Deactivate");
+             }
+             else {
+               $('#deactivateuser').html("Activate");
+             }
+             statusurl="/admin/dcard/reseller/changestatus/"+data.username
+             $('#deactivateuser').attr("href", statusurl);
+             $('#resetpassword').attr("href", href);
+           }
+         });
+       }
+      </script>
+      <script src="{% static "select css/bootstrap-select.js" %}"></script>
+      <!-- Bootstrap Core JavaScript -->
+      <script src="{% static "vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+      <!-- Data table JavaScript -->
+      <script src="{% static "vendors/bower_components/datatables/media/js/jquery.dataTables.min.js" %}"></script>
+      <!-- Slimscroll JavaScript -->
+      <script src="{% static "dist/js/jquery.slimscroll.js" %}"></script>
+      <!-- Init JavaScript -->
+      <script src="{% static "dist/js/init.js" %}"></script>
+   </body>
+</html>

@@ -1,0 +1,437 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <title>
+         OliveMPay
+      </title>
+      <meta name="description" content="Jetson is a Dashboard & Admin Site Responsive Template by hencework." />
+      <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Jetson Admin, Jetsonadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
+      <meta name="author" content="hencework"/>
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="favicon.ico">
+      <link rel="icon" href="favicon.ico" type="image/x-icon">
+      <!-- Data table CSS -->
+      <link href="{% static "vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" %}" rel="stylesheet" type="text/css"/>
+      <!-- Custom CSS -->
+      <link href="{% static "dist/css/style.css" %}" rel="stylesheet" type="text/css">
+      <!-- jQuery -->
+      <script src="{% static "vendors/bower_components/jquery/dist/jquery.min.js" %}"></script>
+   </head>
+   <body>
+      <!-- Preloader -->
+      <div class="preloader-it">
+         <div class="la-anim-1"></div>
+      </div>
+      <!-- /Preloader -->
+      <!-- Top Menu Items -->
+       <nav class="navbar navbar-inverse">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#">OliveMPay</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li><a href="{% url "homePage" %}">Home</a></li>
+                <li><a href="{% url "profile" %}">Edit Profile</a></li>
+                 <li class="">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">User Management
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li><a href="{% url "addReseller" %}">Add Reseller</a></li>
+                       <li><a href="{% url "addUser" %}">Add User</a></li>
+                       <li><a href="{% url "viewReseller" %}">View Reseller</a></li>
+                       <li><a href="{% url "viewUser" %}">View User</a></li>
+                    </ul>
+                 </li>
+                 <li class="">
+                    <a id="bm" class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Balance Management	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                         <a href="{% url "balanceTransfer" %}">Balance transfer</a>
+                       </li>
+                       <li>
+                         <a href="{% url "addPayment" %}">Add Payment</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="re" class="dropdown-toggle" data-toggle="dropdown" href="#">Reports  <span class="caret"></span> </a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "vcloudreport" %}">Vcloud Report</a>
+                       </li>
+                       <li>
+                            <a href="{% url "bTReport" %}">Balance Transfer Report</a>
+                       </li>
+                       <li>
+                          <a href="{% url "paymentReport" %}">Payment Report</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="br" class="dropdown-toggle" data-toggle="dropdown" href="#">Brands
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li><a href="{% url "addvcloudbrand" %}">Add Brand</a></li>
+                       <li><a href="{% url "assignVcloudBrands" %}">Assign Brand</a></li>
+                       <li><a href="{% url "manageVcloudBrands" %}">Manage Brand</a></li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="pr" class="dropdown-toggle" data-toggle="dropdown" href="#">Products	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "addVcloudProduct" %}">Add Product Manually</a>
+                       </li>
+                       <li>
+                          <a href="{% url "addcsvProduct" %}">Assign Product as CSV file</a>
+                       </li>
+                       <li>
+                          <a href="{% url "vcloudmanageProduct" %}">Manage Products</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li><a id="st" href="{% url "vcloudStore" %}">Store</span></a>
+                 </li>
+
+
+
+		 <li>
+                     <a id="ma" class="dropdown-toggle" data-toggle="dropdown" href="#">Ads Management<span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li>
+                           <a href="{% url "addads" %}">Add Ads</a>
+                        </li>
+                        <li>
+                           <a  href="{% url "viewad" %}">Manage Ads</a>
+                        </li>
+                     </ul>
+                 </li>
+                 <li><a id="cp" href="{% url "vcloudchangepassword" %}">Change password</a></li>
+
+
+
+
+<li><a id="succ" class="dropdown-toggle" data-toggle="dropdown"  href="#">More</a>
+
+<ul class="dropdown-menu">
+                        <li><a id="cpli" href="{% url "vcloudchangepassword" %}">Change password</a></li>
+
+
+<li class="dropdown-submenu">
+<a id="mali"  class="test" tabindex="-1" href="#">Ads Managements<span class="caret"></span></a>
+<ul class="dropdown-menu">
+
+<li><a tabindex="-1" href="{% url "addads" %}">Add Ads</a></li>
+<li><a tabindex="-1" href="{% url "viewad" %}">Manage Ads</a></li>
+
+</ul>
+</li>
+
+
+<li class="dropdown-submenu">
+<a id="prli"  class="test" tabindex="-1" href="#">Products<span class="caret"></span></a>
+<ul class="dropdown-menu">
+
+<li><a tabindex="-1" href="{% url "addVcloudProduct" %}">Add Product Manually</a></li>
+<li><a tabindex="-1" href="{% url "addcsvProduct" %}">Assign Product as CSV file</a></li>
+ <li><a tabindex="-1" href="{% url "vcloudmanageProduct" %}">Manage Products</a></li>
+</ul>
+</li>
+
+
+
+
+
+ <li><a id="stli" href="{% url "vcloudStore" %}">Store</a>
+
+
+
+<li class="dropdown-submenu">
+<a id="brli"  class="test" tabindex="-1" href="#">Brands	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "addvcloudbrand" %}">Add Brand</li>
+<li><a tabindex="-1" href="{% url "assignVcloudBrands" %}">Assign Brand</a></li>
+<li><a tabindex="-1" href="{% url "manageVcloudBrands" %}">Manage Brand</a></li>
+</ul>
+</li>
+
+
+
+
+<li class="dropdown-submenu">
+<a id="reli"  class="test" tabindex="-1" href="#">Reports 	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "vcloudreport" %}">Vcloud Report</a></li>
+<li><a tabindex="-1" href="{% url "bTReport" %}">Balance Transfer Report</a></li>
+<li><a tabindex="-1" href="{% url "paymentReport" %}">Payment Report</a></li>
+</ul>
+</li>
+
+
+
+
+
+ <li class="dropdown-submenu">
+<a id="bmli"  class="test" tabindex="-1" href="#">Balance Management	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "balanceTransfer" %}">Balance transfer</a></li>
+<li><a tabindex="-1" href="{% url "addPayment" %}">Add Payment</a></li>
+
+
+</ul>
+</li>
+
+
+                     </ul>
+
+
+
+
+</li>
+
+
+
+
+              </ul>
+              <ul class="nav navbar-nav navbar-right"><li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.name }}	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "logout" %}">Logout</a>
+                       </li>
+                    </ul>
+                 </li>
+              </ul>
+            </div>
+         </div>
+      </nav>
+<style>
+
+#succ{display:none;}
+#mali{display:none;}
+#stli{display:none;}
+#brli{display:none;}
+#reli{display:none;}
+#bmli{display:none;}
+@media (max-width: 1523px){
+
+
+#succ{
+display:block;
+
+}
+#cp{ display:none;}
+
+}
+@media (max-width: 1443px){
+
+#ma{display:none;}
+#mali{display:block;}
+
+}
+
+@media (max-width:1292px){
+
+#st{display:none;}
+#stli{display:block;}
+}
+
+@media (max-width:1220px){
+
+#pr{display:none;}
+#prli{display:block;}
+}
+
+@media (max-width:1120px){
+
+#br{display:none;}
+#brli{display:block;}
+}
+@media (max-width:1120px){
+
+#re{display:none;}
+#reli{display:block;}
+}
+
+@media (max-width:940px){
+
+#bm{display:none;}
+#bmli{display:block;}
+}
+
+
+
+</style>
+<script>
+$(document).ready(function(){
+$('.dropdown-submenu a.test').on("click", function(e){
+$(this).next('ul').toggle();
+e.stopPropagation();
+e.preventDefault();
+});
+});
+</script>
+
+      <!-- /Top Menu Items -->
+      <!-- Left Sidebar Menu -->
+      <!-- /Left Sidebar Menu -->
+      <!-- Right Sidebar Menu -->
+      <style>
+         .tab{
+         background:#;
+         height: 50px;
+         }
+      </style>
+      <div class="page-wrapper" style="padding:0px 20px;">
+         <div class="col-lg-12">
+            <div class="col-lg-12">
+               <br>
+               <center>
+                  <h4>VCLOUD</h4>
+                  <h5>Brand details</h5>
+               </center>
+               <br>
+            </div>
+            <div class="col-sm-12">
+               <br>
+               <div class="panel panel-default card-view">
+                  <div class="panel-heading">
+                     <div class="pull-left">
+                        <h6 class="panel-title txt-dark">Vcloud Brands</h6>
+                     </div>
+                     <div class="clearfix"></div>
+                  </div>
+                  <br>
+                  <div class="panel-wrapper collapse in">
+                     <div class="panel-body">
+                        <div class="table-wrap">
+                           <div class="table-responsive">
+                              <div id="datable_1_wrapper" class="dataTables_wrapper">
+                                 <table id="example" class="table display nowrap table-hover display  pb-30 dataTable" role="grid" aria-describedby="datable_1_info">
+                                    <thead>
+                                       <tr role="row">
+                                         <th>Brand</th>
+                                         <th>Rates</th>
+                                         <th>Description</th>
+                                         <th>Currency</th>
+                                         <th>Action</th>
+                                       </tr>
+                                    </thead>
+                                    <tfoot>
+                                       <tr>
+                                         <th>Brand</th>
+                                         <th>Rates</th>
+                                         <th>Description</th>
+                                         <th>Currency</th>
+                                         <th>Action</th>
+                                       </tr>
+                                    </tfoot>
+                                    <tbody>
+                                      {% for brand in brands %}
+                                       <tr>
+                                         <th>{{ brand.brand }}</th>
+                                         <th>{{ brand.denomination }}</th>
+                                         <th>{{ brand.description }}</th>
+                                         <th>{{ brand.currency }}</th>
+                                         <th><button class="btn btn-primary" id="btnmng" onclick="brandedit('{{ brand.id }}')" data-toggle="modal" data-target="#myModal">Manage</button></th>
+                                       </tr>
+                                      {% endfor %}
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          {% block content %}
+          <div class="modal-content">
+            <div class="modal-body" style="height:550px;">
+              <div class="col-lg-6">
+                <h4>Brand Details</h4><br>
+                <form action="{% url "submitManageBrands" %}" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label for="bname">Brand Name:</label>
+                    <input type="text" class="form-control" name="brand" id="bname">
+                    <br>
+                    <label for="blogo">Upload Logo:</label>
+                    <input type="file" class="form-control" name="logo" id="blogo">
+                    <br>
+                    <label for="rate">Rates:</label>
+                    <input type="text" class="form-control" name="rate" id="rate">
+                    <br>
+                    <label for="desc">Description</label>
+                    <textarea class="form-control" rows="5" name="desc" id="desc"></textarea>
+                    <br>
+                    <input type="number" style="display:none;" class="form-control" name="id" id="id">
+                    <a href="#" class="btn btn-success" id="delete">Delete</a>
+                    <button type="submit" class="btn btn-success">Save</button>
+                  </div>
+                </form>
+              </div>
+              <div class="col-lg-6">
+                <h5>Logo</h5><br>
+                <img src="" id="log" name="logo" width="80%">
+              </div>
+            </div>
+          </div>
+          {% endblock %}
+        </div>
+      </div>
+
+      <script>
+      $(document).ready(function(){
+      });
+      function brandedit(id)
+      {
+        $.ajax({
+          url: '/ajax/get_vcloud_brand_details/',
+          data: {
+            'id': id
+          },
+          dataType: 'json',
+          success: function (data) {
+            $("#bname").val(data.brand);
+            $("#rate").val(data.rate);
+            $("#desc").val(data.desc);
+            $("#id").val(data.id);
+            $('#log').attr('src',data.logo);
+	    var url="/vcloud/brands/delete/"+data.id;
+            //$('#delete").attr("href":url);
+            document.getElementById("delete").href=url;
+          }
+        });
+      }
+      </script>
+      <script src="{% static "vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+      <script src="{% static "vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"%}"></script>
+      <script src="{% static "data/dataTables.buttons.min.js" %}"></script>
+      <script src="{% static "data/buttons.flash.min.js" %}"></script>
+      <script src="{% static "data/jszip.min.js" %}"></script>
+      <script src="{% static "data/pdfmake.min.js" %}"></script>
+      <script src="{% static "data/vfs_fonts.js" %}"></script>
+      <script src="{% static "data/buttons.html5.min.js" %}"></script>
+      <script src="{% static "data/buttons.print.min.js" %}"></script>
+      <script src="{% static "dist/js/export-table-data.js" %}"></script>
+      <!-- Slimscroll JavaScript -->
+      <script src="{% static "dist/js/jquery.slimscroll.js" %}"></script>
+      <!-- Init JavaScript -->
+      <script src="{% static "dist/js/init.js" %}"></script>
+   </body>
+</html>

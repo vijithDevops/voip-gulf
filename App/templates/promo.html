@@ -1,0 +1,262 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>promotion</title>
+<link rel="icon" type="image/png" href="http://example.com/myicon.png">
+      
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>   
+</head>
+<body>
+ <nav class="navbar navbar-inverse">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="#">Voip Cloud Test</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li><a href="{% url "adminDcardDashboard" %}">Home</a></li>
+                <li><a href="{% url "profiledcard" %}">Edit Profile</a></li>
+                 <li class="">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">User Management
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li><a href="{% url "addResellerDcard" %}">Add Reseller</a></li>
+                       <li><a href="{% url "addUserDcard" %}">Add User</a></li>
+                       <li><a href="{% url "viewResellerDcard" %}">View Reseller</a></li>
+                       <li><a href="{% url "viewUserDcard" %}">View User</a></li>
+                    </ul>
+                 </li>
+                 <li class="">
+                    <a id="bm" class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Balance Management	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                         <a href="{% url "balanceTransferDcard" %}">Balance transfer</a>
+                       </li>
+                       <li>
+                         <a href="{% url "addPaymentDcard" %}">Add Payment</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="re" class="dropdown-toggle" data-toggle="dropdown" href="#">Reports  <span class="caret"></span> </a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "datacardreport" %}">Vcloud Report</a>
+                       </li>
+                       <li>
+                            <a href="{% url "bTReportDcard" %}">Balance Transfer Report</a>
+                       </li>
+                       <li>
+                          <a href="{% url "paymentReportDcard" %}">Payment Report</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="br" class="dropdown-toggle" data-toggle="dropdown" href="#">Brands
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li><a href="{% url "addDCardbrand" %}">Add Brand</a></li>
+                       <li><a href="{% url "assignDCardBrands" %}">Assign Brand</a></li>
+                       <li><a href="{% url "manageDCardBrands" %}">Manage Brand</a></li>
+                    </ul>
+                 </li>
+                 <li>
+                    <a id="pr" class="dropdown-toggle" data-toggle="dropdown" href="#">Products	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "adddcardProduct" %}">Add Product Manually</a>
+                       </li>
+                       <li>
+                          <a href="{% url "adddcardcsvProduct" %}">Assign Product as CSV file</a>
+                       </li>
+                       <li>
+                          <a href="{% url "dcardmanageProduct" %}">Manage Products</a>
+                       </li>
+                    </ul>
+                 </li>
+                 <li><a id="st" href="{% url "dcardstore" %}">Store</span></a>
+                 </li>
+
+
+
+		 <li>
+                     <a id="ma" class="dropdown-toggle" data-toggle="dropdown" href="#">Ads Management<span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li>
+                           <a href="{% url "dcardaddads" %}">Add Ads</a>
+                        </li>
+                        <li>
+                           <a  href="{% url "dcardviewad" %}">Manage Ads</a>
+                        </li>
+                     </ul>
+                 </li>
+                 <li><a id="cp" href="{% url "dcardchangepassword" %}">Change password</a></li>
+
+
+
+
+<li><a id="succ" class="dropdown-toggle" data-toggle="dropdown"  href="#">More</a>
+
+<ul class="dropdown-menu">
+                        <li><a id="cpli" href="{% url "dcardchangepassword" %}">Change password</a></li>
+
+                       <li>
+                     <a id="mali" class="dropdown-toggle" data-toggle="dropdown" href="#">Ads Management<span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                        <li>
+                           <a href="{% url "dcardaddads" %}">Add Ads</a>
+                        </li>
+                        <li>
+                           <a  href="{% url "dcardviewad" %}">Manage Ads</a>
+                        </li>
+                     </ul>
+                 </li>
+
+
+<li class="dropdown-submenu">
+<a id="prli"  class="test" tabindex="-1" href="#">Products<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "adddcardProduct" %}">Add Product Manually</li>
+<li><a tabindex="-1" href="{% url "adddcardProduct" %}">Add Product Manually</a></li>
+<li><a tabindex="-1" href="{% url "adddcardcsvProduct" %}">Assign Product as CSV file</a></li>
+ <li><a tabindex="-1" href="{% url "dcardmanageProduct" %}">Manage Products</a></li>
+</ul>
+</li>
+
+
+
+
+
+ <li><a id="stli" href="{% url "dcardstore" %}">Store</a>
+
+
+
+<li class="dropdown-submenu">
+<a id="brli"  class="test" tabindex="-1" href="#">Brands	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "addDCardbrand" %}">Add Brand</li>
+<li><a tabindex="-1" href="{% url "assignDCardBrands" %}">Assign Brand</a></li>
+<li><a tabindex="-1" href="{% url "manageDCardBrands" %}">Manage Brand</a></li>
+</ul>
+</li>
+
+
+ 
+
+<li class="dropdown-submenu">
+<a id="reli"  class="test" tabindex="-1" href="#">Reports 	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "datacardreport" %}">Vcloud Report</a></li>
+<li><a tabindex="-1" href="{% url "bTReportDcard" %}">Balance Transfer Report</a></li>
+<li><a tabindex="-1" href="{% url "paymentReportDcard" %}">Payment Report</a></li>
+</ul>
+</li>
+
+
+
+
+
+ <li class="dropdown-submenu">
+<a id="bmli"  class="test" tabindex="-1" href="#">Balance Management	<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a tabindex="-1" href="{% url "balanceTransferDcard" %}">Balance transfer</a></li>
+<li><a tabindex="-1" href="{% url "addPaymentDcard" %}">Add Payment</a></li>
+<li class="dropdown-submenu">
+<a class="test" href="#">Another dropdown <span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a href="#">3rd level dropdown</a></li>
+<li><a href="#">3rd level dropdown</a></li>
+</ul>
+</li>
+</ul>
+</li>
+
+
+                     </ul>
+
+
+
+
+</li>
+
+
+
+
+              </ul>
+              <ul class="nav navbar-nav navbar-right"><li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.name }}	<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       <li>
+                          <a href="{% url "logout" %}">Logout</a>
+                       </li>
+                    </ul>
+                 </li>
+              </ul>
+            </div>
+         </div>
+      </nav>
+
+<style>
+	
+	.outbox{
+		
+	
+		border:#ccc 1px solid;
+		
+		
+		
+	}
+	
+	
+	</style>
+<br>
+<br>
+<br>
+
+
+<div class="col-lg-10 col-lg-offset-1 outbox">
+
+
+<br>
+<center><h2>Manage Ads</h2></center>
+<br>
+<br>
+
+            
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>UserType</th>
+        <th>AdType</th>
+        <th>Image / Text</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+     {% for i in ads %}
+      <tr>
+        <td>{{ i.id }}</td>
+        <td>{{ i.usertype }}</td>
+        <td>{{ i.adtype }}</td>
+        <td>{% if i.adimage %}<img src="{{ i.adimage.url }}"/> {% else %} {{ i.adtext }} {% endif %}</td>
+        <td><a href="/vcloud/ads/delete/{{ i.id }}" class="btn btn-success">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+<br>
+<br>
+<br>
+</div>
+</body>
+</html>

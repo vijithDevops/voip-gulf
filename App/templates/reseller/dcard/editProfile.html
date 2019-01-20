@@ -1,0 +1,252 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <title>OliveMPay</title>
+      <meta name="description" content="" />
+      <meta name="keywords" content="" />
+      <meta name="author" content="Sherin"/>
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="favicon.ico">
+      <link rel="icon" href="favicon.ico" type="image/x-icon">
+      <!-- Data table CSS -->
+      <link href="{% static "vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" %}" rel="stylesheet" type="text/css"/>
+      <!-- Custom CSS -->
+      <link href="{% static "dist/css/style.css" %}" rel="stylesheet" type="text/css">
+      <!-- jQuery -->
+      <script src="{% static "vendors/bower_components/jquery/dist/jquery.min.js" %}"></script>
+      <style>
+         .navbar.navbar-inverse {
+         background: #000000d9;
+         }
+         .navbar {
+         border-radius: 0px;
+         }
+         .page-wrapper {
+         margin-left: 19px;
+         padding: 30px 20px;
+         position: relative;
+         -webkit-transition: all 0.4s ease;
+         -moz-transition: all 0.4s ease;
+         transition: all 0.4s ease;
+         left: 0;
+         }
+         @media only screen and (max-width: 767px) {
+         .page-wrapper {
+         margin-left: 19px;
+         padding: 0px 0px;
+         position: relative;
+         -webkit-transition: all 0.4s ease;
+         -moz-transition: all 0.4s ease;
+         transition: all 0.4s ease;
+         left: 0;
+         }
+         }
+      </style>
+   </head>
+   <body>
+      <!-- Preloader -->
+      <div class="preloader-it">
+         <div class="la-anim-1"></div>
+      </div>
+      <!-- /Preloader -->
+      <div class="wrapper theme-6-active pimary-color-yellow">
+         <!-- Top Menu Items -->
+         <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+               <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#">OliveMPay</a>
+               </div>
+               <div class="collapse navbar-collapse" id="myNavbar">
+                  <ul class="nav navbar-nav">
+                    <li><a href="{% url "resellerDcardDashboard" %}">Home</a></li>
+                    <li><a href="{% url "resellerprofiledcard" %}">Edit Profile</a></li>
+                     <li class="">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">User Management
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                           <li><a href="{% url "reselleraddResellerDcard" %}">Add Reseller</a></li>
+                           <li><a href="{% url "reselleraddUserDcard" %}">Add User</a></li>
+                           <li><a href="{% url "resellerviewResellerDcard" %}">View Reseller</a></li>
+                           <li><a href="{% url "resellerviewUserDcard" %}">View User</a></li>
+                        </ul>
+                     </li>
+                     <li class="">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Balance Management	<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                           <li>
+                             <a href="{% url "resellerbalanceTransferDcard" %}">Balance transfer</a>
+                           </li>
+                           <li>
+                             <a href="{% url "reselleraddPaymentDcard" %}">Add Payment</a>
+                           </li>
+                        </ul>
+                     </li>
+                     <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reports  <span class="caret"></span> </a>
+                        <ul class="dropdown-menu">
+                           <li>
+                              <a href="{% url "resellerdatacardreport" %}">Vcloud Report</a>
+                           </li>
+                           <li>
+                                <a href="{% url "resellerbTReportDcard" %}">Balance Transfer Report</a>
+                           </li>
+                           <li>
+                              <a href="{% url "resellerpaymentReportDcard" %}">Payment Report</a>
+                           </li>
+                        </ul>
+                     </li>
+                     <li><a href="{% url "resellerassignDCardBrands" %}">Assign Brand </a></li>
+                     <li><a href="{% url "resellerdcardviewbrands" %}">View  Brand </a></li>
+                     <li><a href="{% url "resellerdcardstore" %}">Store </a></li>
+                     <li><a href="{% url "resellerdcardchangepassword" %}">Change password</a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Balance: {{ user.balance }}</a></li>
+                    <li><a href="#">Credit : {{ user.targetAmt }}</a></li>
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.name }}	<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                           <li>
+                              <a href="{% url "logout" %}">Logout</a>
+                           </li>
+                        </ul>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+         <!-- /Top Menu Items -->
+         <!-- Main Content -->
+         <div class="page-wrapper">
+            <div class="container-fluid pt-25">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="panel panel-default card-view">
+                        <div class="panel-heading">
+                           <div class="pull-left">
+                              <h6 class="panel-title txt-dark">Edit Profile</h6>
+                           </div>
+                           <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-wrapper collapse in">
+                           <div class="panel-body">
+                              <div class="row">
+                                 <div class="col-sm-12 col-xs-12">
+                                    <div class="form-wrap">
+                                       <form action="{% url "editresellerProfileDcard" %}" method="POST">
+                                         {% csrf_token %}
+                                          <div class="form-body">
+                                             <hr class="light-grey-hr">
+                                             <div class="row">
+                                                <div class="col-md-6">
+                                                   <div class="form-group">
+                                                      <label class="control-label mb-10">Name</label>
+                                                      <input type="text" name="name" class="form-control" value="{{ user.name }}">
+                                                   </div>
+                                                </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                   <div class="form-group">
+                                                      <label class="control-label mb-10">Username</label>
+                                                      <input type="text" name="username" class="form-control" value="{{ user.username }}" disabled>
+                                                   </div>
+                                                </div>
+                                                <!--/span-->
+                                             </div>
+                                             <!-- /Row -->
+                                             <!-- /Row -->
+                                             <div class="row">
+                                               <div class="form-group col-sm-6">
+                                                  <label class="control-label mb-10">Address</label>
+                                                  <textarea class="form-control" name="address" rows="4">{{ user.address }}</textarea>
+                                               </div>
+                                                <!--/span-->
+                                                <div class="col-md-6">
+                                                   <div class="form-group">
+                                                      <label class="control-label mb-10">Email</label>
+                                                      <input type="email" name="email" class="form-control" value="{{ user.email }}" required>
+                                                   </div>
+                                                </div>
+                                                <!--/span-->
+                                             </div>
+                                             <!-- /Row -->
+                                             <!-- /Row -->
+                                             <div class="row">
+                                                <div class="col-md-6">
+                                                   <div class="form-group">
+                                                      <label class="control-label mb-10">Base Currency Type:</label>
+                                                      <select class="form-control editable" id="sel5" name="sel5" disabled="">
+                                                         <option value="{{ user.baseCurrency}}">{{ user.baseCurrency}}</option>\
+                                                      </select>
+                                                   </div>
+                                                </div>
+                                                <div class="row">
+                                                   <div class="col-md-6">
+                                                      <div class="form-group">
+                                                         <label class="control-label mb-10">Mobile No*</label>
+                                                         <input type="text" name="mobileno" class="form-control" value="{{ user.mobileno }}" required>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                             <div class="row">
+                                                 <div class="form-group col-sm-6">
+                                                    <label class="control-label mb-10">Margin</label>
+                                                    <input type="text" name="margin" class="form-control"  value="{{ user.margin }}" disabled>
+                                                 </div>
+                                             </div>
+                                          </div>
+                                          <div class="form-actions mt-10">
+                                             <button type="submit" class="btn btn-success  mr-10">Save Changes</button>
+                                          </div>
+                                          {% if messages %}
+                                          {% for message in messages %}
+                                         <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>
+                                           <strong>{{ message.tag }}</strong> {{ message }}
+                                         </div>
+                                          {% endfor %}
+                                          {% endif %}
+                                       </form>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Footer -->
+            <footer class="footer container-fluid pl-30 pr-30">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <p>Developed and maintained by Nuvac technologies © 2018</p>
+                  </div>
+               </div>
+            </footer>
+            <!-- /Footer -->
+         </div>
+         <!-- /Main Content -->
+      </div>
+      <!-- /#wrapper -->
+      <!-- JavaScript -->
+
+      <!-- Bootstrap Core JavaScript -->
+      <script src="{% static "vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+      <!-- Fancy Dropdown JS -->
+      <script src="{% static "dist/js/dropdown-bootstrap-extended.js" %}"></script>
+      <!-- Slimscroll JavaScript -->
+  		<script src="{% static "dist/js/jquery.slimscroll.js" %}"></script>
+      <!-- Init JavaScript -->
+      <script src="{% static "dist/js/init.js" %}"></script>
+      <!-- Flot Charts JavaScript -->
+   </body>
+</html>
