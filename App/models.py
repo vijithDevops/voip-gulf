@@ -40,7 +40,7 @@ class UserData(models.Model):
     password = models.CharField(max_length=500,blank=True)
 
     class Meta:
-        db_table = "UserData"
+        db_table = "userdata"
         verbose_name_plural = "User Registration Details"
 
     def __str__(self):
@@ -53,7 +53,7 @@ class exchangeRate(models.Model):
     rate = models.DecimalField(null=True,max_digits=20,decimal_places=2)
 
     class Meta:
-        db_table = "exchangeRate"
+        db_table = "exchangerate"
 
 class balanceTransactionReport(models.Model):
     id = models.AutoField(primary_key=True)
@@ -69,7 +69,7 @@ class balanceTransactionReport(models.Model):
     status = models.BooleanField(default=True)
 
     class Meta:
-        db_table = "balanceTransactionReport"
+        db_table = "balancetransactionreport"
         verbose_name_plural = "Balance Transaction Report"
 
 class fundTransactionReport(models.Model):
@@ -85,7 +85,7 @@ class fundTransactionReport(models.Model):
     remarks = models.CharField(max_length=200,blank=True, null=True)
 
     class Meta:
-        db_table = "fundTransactionReport"
+        db_table = "fundtransactionreport"
         verbose_name_plural = "Payment Transaction Report"
 
 class vcloudBrands(models.Model):
@@ -98,7 +98,7 @@ class vcloudBrands(models.Model):
     category = models.CharField(max_length=50, blank = True)
 
     class Meta:
-        db_table = "vcloudBrands"
+        db_table = "vcloudbrands"
         verbose_name_plural = "Vcloud Brands"
 
     def image_tag(self):
@@ -134,7 +134,7 @@ class vcloudAssignments(models.Model):
     margin = models.DecimalField(null=True,max_digits=20,decimal_places=2)
 
     class Meta:
-        db_table = "vcloudAssignments"
+        db_table = "vcloudassignments"
         verbose_name_plural = "Vcloud Assignments Report"
 
 
@@ -147,7 +147,7 @@ class dcardBrands(models.Model):
     currency = models.CharField(max_length=50, default='SAR')
 
     class Meta:
-        db_table = "dcardBrands"
+        db_table = "dcardbrands"
         verbose_name_plural = "Datacard Brands"
 
     def image_tag(self):
@@ -165,7 +165,7 @@ class rcardBrands(models.Model):
     currency = models.CharField(max_length=50, default='SAR')
 
     class Meta:
-        db_table = "rcardBrands"
+        db_table = "rcardbrands"
         verbose_name_plural = "Rcard Brands"
 
     def image_tag(self):
@@ -198,7 +198,7 @@ class datacardAssignments(models.Model):
     margin = models.DecimalField(null=True,max_digits=20,decimal_places=2)
 
     class Meta:
-        db_table = "datacardAssignments"
+        db_table = "datacardassignments"
         verbose_name_plural = "Datacard Assignments Report"
 
 class rcardProducts(models.Model):
@@ -225,7 +225,7 @@ class rcardAssignments(models.Model):
     margin = models.DecimalField(null=True,max_digits=20,decimal_places=2)
 
     class Meta:
-        db_table = "rcardAssignments"
+        db_table = "rcardassignments"
         verbose_name_plural = "Rcard Assignments Report"
 
 class vcloudtransactions(models.Model):
