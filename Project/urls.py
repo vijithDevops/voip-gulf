@@ -27,7 +27,7 @@ from rest_framework import routers, serializers, viewsets
 
 from rest_framework_swagger.views import get_swagger_view
 
-schema_view = get_swagger_view(title='VoipCloud Api')
+schema_view = get_swagger_view(title='VoipGulf Api')
 
 from django.conf.urls import (
 handler400, handler403, handler404, handler500
@@ -39,9 +39,9 @@ handler404 = 'App.views.PageNotFound'
 handler500 = 'App.views.ServerError'
 
 
-admin.site.site_header = "OliveMpay Console";
-admin.site.site_title = "OliveMpay";
-admin.site.index_title = "OliveMpay Database";
+admin.site.site_header = "VoipGulf Console";
+admin.site.site_title = "VoipGulf";
+admin.site.index_title = "VoipGulf Database";
 
 #router = routers.DefaultRouter()
 #router.register('users', UserViewSet)

@@ -27,9 +27,9 @@ FONTS_PATH = os.path.join(BASE_DIR, 'fonts')
 SECRET_KEY = 'm@_@^78x^7382xt#tc)y7^9atzpsluf53-z&74#t-_s0(2&4$_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['159.65.154.11','127.0.0.1','13.233.1.207']
+ALLOWED_HOSTS = ['159.65.154.11','127.0.0.1','13.233.1.207','52.66.186.178']
 
 
 # Application definition
@@ -96,9 +96,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'vclouddb',
-        'USER': 'vclouddb',
-        'PASSWORD': 'Nuvacvclouddb',
-        'HOST': 'vcloudnuvacdb.cjqredtajxvm.ap-south-1.rds.amazonaws.com',
+        'USER': 'voipgulfuser',
+        'PASSWORD': 'voipgulfpwd',
+        'HOST': 'voipgulfdb.czocyln3pjmr.ap-south-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
