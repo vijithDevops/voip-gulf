@@ -1787,9 +1787,11 @@ def saveassignDCardBrands(request):
                             vdt = datacardAssignments.objects.get(brand=brdet,assignedby=assignedby,assignedto=assignedto)
                             vdt.delete()
                             vadt = datacardAssignments.objects.filter(brand=brdet,assignedby=assignedto)
-                            for i in vadt:
+                            print(vadt)
+                            for j in vadt:
                                 try:
-                                    ud = datacardAssignments.objects.filter(brand=brdet,assignedby=i.assignedto)
+                                    ud = datacardAssignments.objects.filter(brand=brdet,assignedby=j.assignedto)
+                                    print(ud)
                                     ud.delete()
                                 except Exception as e:
                                     print(e)
@@ -1816,7 +1818,8 @@ def saveassignDCardBrands(request):
                             vass.save()
                 data={"status":"Success"}
                 return JsonResponse(data)
-            except:
+            except Exception as e:
+                print(e)
                 return JsonResponse({"status":"Error"})
         else:
             pass
@@ -13655,6 +13658,9 @@ def getAllMargin(request):
                 userdetails = UserData.objects.get(username=username)
                 user = request.POST.get('username')
                 type = request.POST.get('type', None)
+                print(user)
+                print(userdetails.username)
+                print(type)
                 muserdet = UserData.objects.get(username=user)
                 if(type=="Vcloud"):
                     mdet = vcloudAssignments.objects.filter(assignedby=userdetails,assignedto=muserdet)
@@ -13663,6 +13669,7 @@ def getAllMargin(request):
                         content.append(data)
                 elif(type=="Dcard"):
                     mdet = datacardAssignments.objects.filter(assignedby=userdetails,assignedto=muserdet)
+                    print(mdet)
                     for i in mdet:
                         data={'brandid':i.brand.id,'margin':i.margin}
                         content.append(data)
