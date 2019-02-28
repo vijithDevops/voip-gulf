@@ -2973,8 +2973,8 @@ def resellervcloudhomePage(request):
                 data5={'user':key,'amount':amountsum}
                 list3.append(data5)
             return render(request,"reseller/vcloud/dashboard-vcloud.html",{'filterform':vcloudDashboardfilter,'reseller':resellerlist,'recenttransactions':content,'products':product,'user':user,'topuser':list3,'last_month':last_month,'boxval':box_data})
-        except:
-            print("error");
+        except Exception as e:
+            print(e);
             pass;
             #return render(request,"reseller/vcloud/dashboard-vcloud.html",{'filterform':vcloudDashboardfilter,'reseller':resellerlist,'recenttransactions':content,'products':product,'user':user,'topuser':list3,'last_month':last_month,'boxval':box_data})
     else:
