@@ -2933,7 +2933,7 @@ def resellervcloudhomePage(request):
             box_data={'productsum':productsum,'quantitysum':quantitysum,'profitsum':profitsum,'noofrecords':count}
             brand = vcloudAssignments.objects.filter(assignedto=username).order_by('brand__brand').values('brand__brand').annotate(productcount=Count('brand')).values('brand','brand__brand', 'productcount','brand__id','brand__logo','brand__denomination','brand__currency','brand__description','margin')
             product=list()
-            print(brand)
+            #print(brand)
             for i in brand:
                 print(i['brand__id'])
                 pd=vcloudProducts.objects.filter(brand=i['brand__id'],status=True).order_by('brand__brand').values('brand__brand').annotate(productcount=Count('brand')).values('brand','brand__brand', 'productcount','brand__id','brand__logo','brand__denomination','brand__currency','brand__description')
@@ -2947,6 +2947,7 @@ def resellervcloudhomePage(request):
                     productcost=Decimal(lpd[0]['brand__denomination'])
                     print(productcost)
                     while(True):
+                        print(username)
                         userdet2=UserData.objects.get(username=username)
                         print(userdet2)
                         margindet=vcloudAssignments.objects.filter(assignedto=username,brand__brand=i['brand__brand']).values('margin')
@@ -2975,8 +2976,7 @@ def resellervcloudhomePage(request):
             return render(request,"reseller/vcloud/dashboard-vcloud.html",{'filterform':vcloudDashboardfilter,'reseller':resellerlist,'recenttransactions':content,'products':product,'user':user,'topuser':list3,'last_month':last_month,'boxval':box_data})
         except Exception as e:
             print(e);
-            pass;
-            #return render(request,"reseller/vcloud/dashboard-vcloud.html",{'filterform':vcloudDashboardfilter,'reseller':resellerlist,'recenttransactions':content,'products':product,'user':user,'topuser':list3,'last_month':last_month,'boxval':box_data})
+            return render(request,"reseller/vcloud/dashboard-vcloud.html",{'filterform':vcloudDashboardfilter,'reseller':resellerlist,'recenttransactions':content,'products':product,'user':user,'topuser':list3,'last_month':last_month,'boxval':box_data})
     else:
         return redirect(LoginPage)
 
