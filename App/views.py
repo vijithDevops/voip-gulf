@@ -2950,7 +2950,7 @@ def resellervcloudhomePage(request):
                     while(True):
                         print(username)
                         userdet2=UserData.objects.get(username=username)
-                        print(userdet2.username)
+                        print("username:"+userdet2.username)
                         margindet=vcloudAssignments.objects.filter(assignedto=username,brand__brand=i['brand__brand']).values('margin')
                         if(userdet2.postId=="Admin"):
                             break;
