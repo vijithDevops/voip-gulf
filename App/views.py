@@ -2944,12 +2944,13 @@ def resellervcloudhomePage(request):
                     #print("Haiii")
                 else:
                     username=request.session["user"]
+                    print(username)
                     productcost=Decimal(lpd[0]['brand__denomination'])
                     print(productcost)
                     while(True):
                         print(username)
                         userdet2=UserData.objects.get(username=username)
-                        print(userdet2)
+                        print(userdet2.username)
                         margindet=vcloudAssignments.objects.filter(assignedto=username,brand__brand=i['brand__brand']).values('margin')
                         if(userdet2.postId=="Admin"):
                             break;
@@ -2976,7 +2977,7 @@ def resellervcloudhomePage(request):
             return render(request,"reseller/vcloud/dashboard-vcloud.html",{'filterform':vcloudDashboardfilter,'reseller':resellerlist,'recenttransactions':content,'products':product,'user':user,'topuser':list3,'last_month':last_month,'boxval':box_data})
         except Exception as e:
             print(e);
-            return render(request,"reseller/vcloud/dashboard-vcloud.html",{'filterform':vcloudDashboardfilter,'reseller':resellerlist,'recenttransactions':content,'products':product,'user':user,'topuser':list3,'last_month':last_month,'boxval':box_data})
+            #return render(request,"reseller/vcloud/dashboard-vcloud.html",{'filterform':vcloudDashboardfilter,'reseller':resellerlist,'recenttransactions':content,'products':product,'user':user,'topuser':list3,'last_month':last_month,'boxval':box_data})
     else:
         return redirect(LoginPage)
 
