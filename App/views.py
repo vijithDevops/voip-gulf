@@ -2958,7 +2958,7 @@ def resellervcloudhomePage(request):
                             #print(margindet[0]['margin'])
                             productcost = Decimal(productcost)+Decimal(margindet[0]['margin'])
                             #print(productcost)
-                        username=userdet2.sponserId
+                        username=userdet2.sponserId.username
                         print(username)
                         count=int(count)+1
                     data={"brand":lpd[0]['brand__brand'],'rate':productcost}
